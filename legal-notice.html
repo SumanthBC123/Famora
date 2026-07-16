@@ -21,8 +21,8 @@
 
   header.site{position:sticky; top:0; z-index:10; background:rgba(253,252,250,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
   .header-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
-  .logo{display:flex; align-items:center; gap:2px; font-family:var(--display); font-weight:700; font-size:1.3rem; color:var(--blue); text-decoration:none;}
-  .logo .dot{color:var(--orange);}
+  .logo{display:flex; align-items:center; gap:2px; text-decoration:none;}
+  .logo img{height:26px; width:auto; display:block;}
   .back-link{font-family:var(--display); font-weight:700; font-size:0.85rem; color:var(--ink-soft); text-decoration:none;}
   .back-link:hover{color:var(--blue-deep);}
 
@@ -48,7 +48,8 @@
   footer.site a{color:#c7ccd1; text-decoration:none; font-size:0.88rem;}
   footer.site a:hover{color:var(--orange);}
   .footer-row{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;}
-  .footer-row .footer-logo{font-family:var(--display); font-weight:700; color:#fff;}
+  .footer-row .footer-logo{display:block;}
+  .footer-row .footer-logo img{height:22px; width:auto; display:block;}
 
   @media (max-width:640px){
     .legal-hero{padding:40px 0 8px;}
@@ -58,7 +59,7 @@
 
 <header class="site">
   <div class="wrap header-row">
-    <a class="logo" href="index.html">FAM<span class="dot">O</span>RA</a>
+    <a class="logo" href="index.html"><img src="assets/famora-logo.png" alt="Famora"></a>
     <a class="back-link" href="index.html">&larr; Back to Famora</a>
   </div>
 </header>
@@ -135,7 +136,7 @@
 
 <footer class="site">
   <div class="wrap footer-row">
-    <span class="footer-logo">FAMORA</span>
+    <span class="footer-logo"><img src="assets/famora-logo.png" alt="Famora"></span>
     <a href="index.html">Back to Famora</a>
   </div>
 </footer>

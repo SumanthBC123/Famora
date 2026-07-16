@@ -60,8 +60,8 @@
   header.site{position:sticky; top:0; z-index:50; background:rgba(253,252,250,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); transition:box-shadow .2s ease;}
   header.site.scrolled{box-shadow:0 8px 20px -16px rgba(23,26,29,.3);}
   .header-row{position:relative; display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px;}
-  .logo{display:flex; align-items:center; gap:2px; font-family:var(--display); font-weight:700; font-size:1.3rem; color:var(--blue); text-decoration:none;}
-  .logo .dot{color:var(--orange);}
+  .logo{display:flex; align-items:center; gap:2px; text-decoration:none;}
+  .logo img{height:26px; width:auto; display:block;}
   nav.anchors{display:flex; gap:28px; align-items:center;}
   nav.anchors a{font-family:var(--display); font-weight:700; font-size:0.85rem; color:var(--ink-soft); text-decoration:none; position:relative; padding-bottom:3px;}
   nav.anchors a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background:var(--orange); transition:right .2s ease;}
@@ -121,7 +121,8 @@
   /* FOOTER */
   footer.site{background:var(--ink); color:#c7ccd1; padding:48px 0 28px;}
   .footer-grid{display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap; padding-bottom:26px; border-bottom:1px solid #33383d;}
-  .footer-logo{font-family:var(--display); font-weight:700; font-size:1.2rem; color:#fff;}
+  .footer-logo{display:block;}
+  .footer-logo img{height:24px; width:auto; display:block;}
   .footer-links{display:flex; gap:26px; flex-wrap:wrap;}
   .footer-links a{font-size:0.88rem; text-decoration:none; color:#c7ccd1;}
   .footer-links a:hover{color:var(--orange);}
@@ -142,7 +143,7 @@
 
 <header class="site" id="siteHeader">
   <div class="wrap header-row">
-    <a class="logo" href="#top">FAM<span class="dot">O</span>RA</a>
+    <a class="logo" href="#top"><img src="assets/famora-logo.png" alt="Famora"></a>
     <nav class="anchors" id="siteNav">
       <a href="#products">Products</a>
       <a href="#why-famora">Why Famora</a>
@@ -770,9 +771,7 @@
         <div class="closing-line">Famora keeps household care simple: useful products, practical quantities, and straightforward value.</div>
       </div>
       <div class="about-mark reveal">
-        <svg viewBox="0 0 220 120" width="100%">
-          <text x="110" y="65" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="36" fill="#3786c6">FAM<tspan fill="#fca311">O</tspan>RA</text>
-        </svg>
+        <img src="assets/famora-logo.png" alt="Famora" style="width:100%; max-width:280px; height:auto; display:block;">
       </div>
     </div>
   </section>
@@ -916,7 +915,7 @@
 <footer class="site">
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-logo">FAMORA</div>
+      <div class="footer-logo"><img src="assets/famora-logo.png" alt="Famora"></div>
       <div class="footer-links">
         <a href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Amazon Storefront</a>
         <a href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Cetirizine</a>

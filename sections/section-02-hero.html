@@ -13,7 +13,7 @@
   .fm-hero-sub{ font-family:'Open Sans',sans-serif; font-size:19px; color:#3a3a3a; line-height:1.65; margin:0 0 12px; }
   .fm-hero-support{ font-family:'Open Sans',sans-serif; font-weight:700; font-size:15px; color:var(--fm-blue-dark); margin:14px 0 26px; }
 
-  .fm-hero-right{ display:grid; grid-template-rows:1.1fr 1fr; gap:18px; }
+  .fm-hero-right{ display:grid; grid-template-rows:1fr auto; gap:18px; }
   .fm-hero-photo{
     background:var(--fm-white, #ffffff); border:1px solid var(--fm-line, #e2ddd0); border-radius:18px;
     overflow:hidden; min-height:200px; box-shadow:0 20px 40px -28px rgba(31,77,115,.35);
@@ -34,7 +34,7 @@
 
   @media (max-width:860px){
     .fm-hero-inner{ grid-template-columns:1fr; }
-    .fm-hero-right{ grid-template-rows:1fr 1fr; }
+    .fm-hero-right{ grid-template-rows:1fr auto; }
   }
 </style>
 

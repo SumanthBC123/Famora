@@ -1,0 +1,984 @@
+<title>Famora — Everyday OTC Essentials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#3786c6; --blue-deep:#1f4d73; --blue-tint:#eaf2f9;
+    --orange:#fca311; --orange-deep:#e08e0a; --orange-tint:#fff3de;
+    --neutral:#f3f1ed; --paper:#fdfcfa; --white:#ffffff;
+    --ink:#171a1d; --ink-soft:#565f66; --line:#e5e0d3;
+    --display:'Montserrat','Segoe UI Semibold','Segoe UI',system-ui,sans-serif;
+    --body:'Open Sans','Segoe UI',system-ui,sans-serif;
+
+    /* fm- design system tokens (foundation, matches the tokens above) */
+    --fm-blue:#3786c6; --fm-blue-dark:#1f4d73; --fm-blue-tint:#eaf2f9;
+    --fm-orange:#fca311; --fm-orange-deep:#e08e0a;
+    --fm-neutral:#f3f1ed; --fm-white:#ffffff; --fm-black:#171a1d; --fm-line:#e2ddd0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:var(--display); font-weight:700; line-height:1.12; margin:0 0 14px; text-wrap:balance; letter-spacing:-0.01em;}
+  h2{font-size:clamp(1.7rem,1.2rem+2vw,2.4rem);}
+  h3{font-size:1.15rem;}
+  p{margin:0 0 12px; color:var(--ink-soft); max-width:62ch;}
+  .num{font-variant-numeric:tabular-nums;}
+  section[id]{scroll-margin-top:84px;}
+  section{padding:88px 0;}
+  section.tint{background:var(--neutral);}
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px; font-family:var(--display); font-weight:700;
+    font-size:0.72rem; letter-spacing:0.13em; text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:18px; height:2px; background:var(--orange); display:inline-block; border-radius:2px;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; font-family:var(--display); font-weight:700; font-size:0.9rem;
+    padding:14px 26px; border-radius:9px; text-decoration:none; border:1.5px solid transparent; cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--orange); color:#2b1a00;}
+  .btn-primary:hover{background:var(--orange-deep); transform:translateY(-2px); box-shadow:0 12px 22px -12px rgba(217,138,8,.5);}
+  .btn-outline{border-color:var(--blue); color:var(--blue-deep); background:transparent;}
+  .btn-outline:hover{background:var(--blue-tint); transform:translateY(-2px);}
+  .btn-dark{background:var(--ink); color:#fff;}
+  .btn-dark:hover{background:#2a2f34; transform:translateY(-2px);}
+  .btn-sm{padding:11px 18px; font-size:0.82rem;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1; transform:none;}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  /* HEADER */
+  header.site{position:sticky; top:0; z-index:50; background:rgba(253,252,250,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); transition:box-shadow .2s ease;}
+  header.site.scrolled{box-shadow:0 8px 20px -16px rgba(23,26,29,.3);}
+  .header-row{position:relative; display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px;}
+  .logo{display:flex; align-items:center; gap:2px; font-family:var(--display); font-weight:700; font-size:1.3rem; color:var(--blue); text-decoration:none;}
+  .logo .dot{color:var(--orange);}
+  nav.anchors{display:flex; gap:28px; align-items:center;}
+  nav.anchors a{font-family:var(--display); font-weight:700; font-size:0.85rem; color:var(--ink-soft); text-decoration:none; position:relative; padding-bottom:3px;}
+  nav.anchors a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background:var(--orange); transition:right .2s ease;}
+  nav.anchors a:hover{color:var(--blue-deep);}
+  nav.anchors a:hover::after{right:0;}
+  .header-cta{display:flex; align-items:center; gap:14px;}
+  .nav-toggle{display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer;}
+  .nav-toggle span{width:100%; height:2px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease;}
+  @media (max-width:860px){
+    .nav-toggle{display:flex;}
+    nav.anchors{position:absolute; top:100%; left:0; right:0; background:var(--white); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:0; max-height:0; overflow:hidden; transition:max-height .3s ease; box-shadow:0 12px 20px -16px rgba(23,26,29,.3);}
+    nav.anchors.open{max-height:240px;}
+    nav.anchors a{padding:14px 28px; border-bottom:1px solid var(--line);}
+    nav.anchors a::after{display:none;}
+  }
+
+  /* fm- FOUNDATION — shared base classes for the sections below (not included in the pasted section code, defined here so those sections render correctly) */
+  .fm-section{padding:88px 24px;}
+  .fm-container{max-width:1120px; margin:0 auto; width:100%; box-sizing:border-box;}
+  .fm-center{text-align:center; margin-left:auto; margin-right:auto;}
+  .fm-eyebrow{
+    display:inline-flex; align-items:center; gap:9px; font-family:'Montserrat',sans-serif; font-weight:700;
+    font-size:12px; letter-spacing:0.13em; text-transform:uppercase; color:var(--fm-blue-dark); margin:0 0 14px;
+  }
+  .fm-eyebrow::before{content:""; width:18px; height:2px; background:var(--fm-orange); display:inline-block; border-radius:2px;}
+  .fm-h1{font-family:'Montserrat',sans-serif; font-weight:700; line-height:1.15; letter-spacing:-0.01em; color:var(--fm-black); margin:0 0 16px;}
+  .fm-h2{font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(28px,3vw,38px); line-height:1.2; letter-spacing:-0.01em; color:var(--fm-black); margin:0 0 16px;}
+  .fm-body{font-family:'Open Sans',sans-serif; font-size:16px; color:#5a5a5a; line-height:1.65; max-width:640px; margin:0 0 16px;}
+  .fm-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:'Montserrat',sans-serif; font-weight:700;
+    font-size:14.5px; padding:14px 26px; border-radius:9px; text-decoration:none; border:1.5px solid transparent; cursor:pointer;
+    transition:transform .18s ease, background-color .18s ease, box-shadow .18s ease; white-space:nowrap;
+  }
+  .fm-btn-primary{background:var(--fm-orange); color:#2b1a00;}
+  .fm-btn-primary:hover{background:var(--fm-orange-deep); transform:translateY(-2px);}
+  .fm-btn-secondary{background:transparent; color:var(--fm-blue-dark); border-color:var(--fm-blue);}
+  .fm-btn-secondary:hover{background:var(--fm-blue-tint); transform:translateY(-2px);}
+  .fm-cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  @media (max-width:640px){ .fm-section{padding:56px 24px;} }
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .about-mark{background:var(--white); border:1px solid var(--line); border-radius:18px; padding:48px; display:flex; align-items:center; justify-content:center;}
+  .closing-line{font-family:var(--display); font-weight:700; color:var(--blue-deep); font-size:1rem; border-left:3px solid var(--orange); padding-left:16px; margin-top:14px;}
+  @media (max-width:900px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* SAFETY */
+  .safety-box{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:12px; padding:26px 28px; max-width:820px;}
+  .safety-box h3{margin-bottom:8px; font-size:1.05rem;}
+  .safety-box p{margin:0; font-size:0.94rem;}
+
+  /* FINAL CTA */
+  .final-box{background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%); border-radius:26px; padding:70px 44px; text-align:center; color:#fff;}
+  .final-box h2{color:#fff; max-width:22ch; margin:0 auto 14px;}
+  .final-box p{color:#dcebf6; max-width:52ch; margin:0 auto 28px;}
+
+  /* FOOTER */
+  footer.site{background:var(--ink); color:#c7ccd1; padding:48px 0 28px;}
+  .footer-grid{display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap; padding-bottom:26px; border-bottom:1px solid #33383d;}
+  .footer-logo{font-family:var(--display); font-weight:700; font-size:1.2rem; color:#fff;}
+  .footer-links{display:flex; gap:26px; flex-wrap:wrap;}
+  .footer-links a{font-size:0.88rem; text-decoration:none; color:#c7ccd1;}
+  .footer-links a:hover{color:var(--orange);}
+  .footer-bottom{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:22px; font-size:0.78rem; color:#8a9096;}
+
+  /* mobile CTA */
+  .mobile-cta{display:none; position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--white); border-top:1px solid var(--line); padding:12px 16px calc(12px + env(safe-area-inset-bottom)); transform:translateY(110%); transition:transform .3s ease; box-shadow:0 -10px 22px -16px rgba(23,26,29,.32);}
+  .mobile-cta.show{transform:translateY(0);}
+  .mobile-cta .btn{width:100%; justify-content:center;}
+  @media (max-width:860px){ .mobile-cta{display:block;} }
+
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .final-box{padding:48px 24px;}
+    .wrap{padding:0 20px;}
+  }
+</style>
+
+<header class="site" id="siteHeader">
+  <div class="wrap header-row">
+    <a class="logo" href="#top">FAM<span class="dot">O</span>RA</a>
+    <nav class="anchors" id="siteNav">
+      <a href="#products">Products</a>
+      <a href="#why-famora">Why Famora</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop Amazon</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================
+    SECTION 2 — HERO
+  ============================================================ -->
+  <style>
+    .fm-hero{ background:var(--fm-neutral); padding:96px 24px; width:100%; box-sizing:border-box; }
+    .fm-hero-inner{
+      max-width:1120px; width:100%; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr;
+      gap:24px; align-items:stretch; box-sizing:border-box;
+    }
+    .fm-hero-inner > *{ min-width:0; }
+    .fm-hero-text{ padding:12px 8px; align-self:center; }
+    .fm-hero h1{ font-size:clamp(34px,4.6vw,54px); }
+    .fm-hero-sub{ font-family:'Open Sans',sans-serif; font-size:19px; color:#3a3a3a; line-height:1.65; margin:0 0 12px; }
+    .fm-hero-support{ font-family:'Open Sans',sans-serif; font-weight:700; font-size:15px; color:var(--fm-blue-dark); margin:14px 0 26px; }
+
+    .fm-hero-right{ display:grid; grid-template-rows:1.1fr 1fr; gap:18px; }
+    .fm-hero-photo{
+      background:var(--fm-white, #ffffff); border:1px solid var(--fm-line, #e2ddd0); border-radius:18px;
+      overflow:hidden; min-height:200px; box-shadow:0 20px 40px -28px rgba(31,77,115,.35);
+    }
+    .fm-hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .fm-hero-shelf{ background:var(--fm-blue-dark); border-radius:18px; padding:26px; color:#fff; }
+    .fm-shelf-label{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.1em;
+      text-transform:uppercase; color:#a9c9e4; margin:0 0 12px;
+    }
+    .fm-shelf-item{
+      display:flex; justify-content:space-between; align-items:baseline; padding:10px 0;
+      border-bottom:1px solid rgba(255,255,255,.14); font-size:14px;
+    }
+    .fm-shelf-item:last-child{ border-bottom:none; }
+    .fm-shelf-item .fm-shelf-name{ font-family:'Montserrat',sans-serif; font-weight:700; }
+    .fm-shelf-item .fm-shelf-count{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:18px; color:var(--fm-orange); }
+
+    @media (max-width:860px){
+      .fm-hero-inner{ grid-template-columns:1fr; }
+      .fm-hero-right{ grid-template-rows:1fr 1fr; }
+    }
+  </style>
+
+  <section class="fm-hero" id="hero">
+    <div class="fm-hero-inner">
+      <div class="fm-hero-text">
+        <p class="fm-eyebrow">High-count OTC essentials, available on Amazon</p>
+        <h1 class="fm-h1">High-count OTC essentials for everyday household care.</h1>
+        <p class="fm-hero-sub">Famora offers trusted, high-count over-the-counter essentials designed to help households stay ready for everyday allergy and pain relief needs.</p>
+        <p class="fm-hero-support">Practical products. Clear value. Simple household preparedness.</p>
+        <div class="fm-cta-row">
+          <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop Famora on Amazon</a>
+          <a class="fm-btn fm-btn-secondary" href="#products" id="fm-explore-products">Explore Products</a>
+        </div>
+      </div>
+      <div class="fm-hero-right">
+        <div class="fm-hero-photo reveal">
+          <img src="https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/59da6664-d1ea-4230-a27e-a29e56bf8d00/Hero+-+Everydat+OTC.png" alt="Famora Allergy Relief bottle in a home medicine cabinet">
+        </div>
+        <div class="fm-hero-shelf reveal">
+          <p class="fm-shelf-label">Famora essentials</p>
+          <div class="fm-shelf-item"><span class="fm-shelf-name">Diphenhydramine 25mg</span><span class="fm-shelf-count">650</span></div>
+          <div class="fm-shelf-item"><span class="fm-shelf-name">Cetirizine 10mg</span><span class="fm-shelf-count">365</span></div>
+          <div class="fm-shelf-item"><span class="fm-shelf-name">Low Dose Aspirin 81mg</span><span class="fm-shelf-count">500</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('fm-explore-products');
+    if (!btn || btn.getAttribute('data-fm-bound')) return;
+    btn.setAttribute('data-fm-bound', 'true');
+    btn.addEventListener('click', function(e){
+      var target = document.getElementById('products');
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+    SECTION 2B — MARQUEE STRIP
+  ============================================================ -->
+  <style>
+    .fm-marquee{
+      background:#000; color:#cfd3d6; padding:16px 24px; text-align:center; overflow:hidden;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-marquee-inner{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px;
+      letter-spacing:0.08em; text-transform:uppercase; white-space:normal;
+    }
+    .fm-marquee-inner .fm-dot{ color:var(--fm-orange); margin:0 14px; }
+    @media (max-width:640px){
+      .fm-marquee-inner{ font-size:12px; letter-spacing:0.05em; }
+      .fm-marquee-inner .fm-dot{ margin:0 8px; }
+    }
+  </style>
+
+  <div class="fm-marquee">
+    <div class="fm-marquee-inner">
+      ALLERGY RELIEF <span class="fm-dot">&#9679;</span> PAIN RELIEF <span class="fm-dot">&#9679;</span> HIGH-COUNT FORMATS <span class="fm-dot">&#9679;</span> AVAILABLE ON AMAZON
+    </div>
+  </div>
+
+  <!-- ============================================================
+    SECTION 3 — THE EVERYDAY PROBLEM
+  ============================================================ -->
+  <style>
+    .fm-problem-inner{
+      display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-problem-inner > *{ min-width:0; }
+
+    .fm-shelf-card{
+      background:#fff; border:1px solid var(--fm-line, #e2ddd0); border-radius:14px;
+      padding:28px; display:flex; flex-direction:column; gap:14px;
+    }
+    .fm-shelf-row{
+      display:flex; align-items:center; gap:12px; padding:12px 14px;
+      background:var(--fm-neutral); border-radius:9px;
+    }
+    .fm-shelf-row .fm-dot{ width:9px; height:9px; border-radius:50%; background:var(--fm-blue); flex:0 0 auto; }
+    .fm-shelf-row.fm-low .fm-dot{ background:var(--fm-orange); }
+    .fm-shelf-row span:last-child{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:13.5px; color:#5b5f5a;
+    }
+
+    .fm-problem-closing{
+      font-family:'Montserrat',sans-serif; font-weight:700;
+      color:var(--fm-blue-dark); font-size:16px; border-left:3px solid var(--fm-orange);
+      padding-left:16px; margin-top:18px;
+    }
+    @media (max-width:860px){
+      .fm-problem-inner{ grid-template-columns:1fr; }
+    }
+  </style>
+
+  <section class="fm-section" id="everyday-problem">
+    <div class="fm-container fm-problem-inner">
+      <div class="fm-shelf-card reveal">
+        <div class="fm-shelf-row fm-low"><span class="fm-dot"></span><span>Allergy relief &mdash; running low</span></div>
+        <div class="fm-shelf-row"><span class="fm-dot"></span><span>Pain reliever &mdash; well stocked</span></div>
+        <div class="fm-shelf-row fm-low"><span class="fm-dot"></span><span>Antihistamine &mdash; running low</span></div>
+        <div class="fm-shelf-row"><span class="fm-dot"></span><span>Household essentials &mdash; well stocked</span></div>
+      </div>
+      <div>
+        <p class="fm-eyebrow">The everyday problem</p>
+        <h2 class="fm-h2">Your home medicine cabinet should be ready before you need it.</h2>
+        <p class="fm-body">Most households restock OTC essentials only after symptoms interrupt the day. Small bottles can run out quickly, allergy season can arrive fast, and everyday needs are easier to manage when the basics are already at home.</p>
+        <p class="fm-problem-closing">Famora is built around a simple idea: reliable OTC essentials should be easy to keep stocked.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 4 — WHY FAMORA EXISTS
+  ============================================================ -->
+  <style>
+    .fm-why{ background:var(--fm-blue-dark); }
+    .fm-why-intro{ max-width:720px; margin:0 0 40px; }
+    .fm-why-intro .fm-eyebrow{ color:#a9c9e4; }
+    .fm-why-intro .fm-eyebrow::before{ background:var(--fm-orange); }
+    .fm-why-intro h2{ color:#fff; }
+    .fm-why-intro p{ font-family:'Open Sans',sans-serif; font-size:16px; color:#c3d6e6; line-height:1.65; margin:0; }
+
+    .fm-pillars{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .fm-pillar-card{
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+      border-radius:14px; padding:24px 20px; text-align:left;
+    }
+    .fm-pillar-chip{
+      width:34px; height:34px; border-radius:9px; background:var(--fm-orange);
+      color:#2b1a00; display:flex; align-items:center; justify-content:center;
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; margin-bottom:16px;
+    }
+    .fm-pillar-card h3{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:16.5px;
+      color:#fff; margin:0 0 8px;
+    }
+    .fm-pillar-card p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#c3d6e6; line-height:1.6; margin:0; }
+    @media (max-width:900px){ .fm-pillars{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px){ .fm-pillars{ grid-template-columns:1fr; } }
+  </style>
+
+  <section class="fm-section fm-why" id="why-famora">
+    <div class="fm-container">
+      <div class="fm-why-intro">
+        <p class="fm-eyebrow">Why Famora exists</p>
+        <h2 class="fm-h2">Practical care for households that like to stay prepared.</h2>
+        <p>Famora was created for families and everyday households that want trusted OTC essentials without constantly restocking small-count bottles or overcomplicating routine care.</p>
+      </div>
+      <div class="fm-pillars">
+        <div class="fm-pillar-card reveal">
+          <div class="fm-pillar-chip">01</div>
+          <h3>Trusted OTC essentials</h3>
+          <p>Familiar product categories for everyday household needs.</p>
+        </div>
+        <div class="fm-pillar-card reveal">
+          <div class="fm-pillar-chip">02</div>
+          <h3>High-count formats</h3>
+          <p>More tablets or caplets per bottle, built for practical home stocking.</p>
+        </div>
+        <div class="fm-pillar-card reveal">
+          <div class="fm-pillar-chip">03</div>
+          <h3>Smart everyday value</h3>
+          <p>Designed for shoppers who compare what they get and want dependable value.</p>
+        </div>
+        <div class="fm-pillar-card reveal">
+          <div class="fm-pillar-chip">04</div>
+          <h3>Simple preparedness</h3>
+          <p>Products that help keep the home medicine cabinet ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 5 — PRODUCT LINEUP OVERVIEW
+  ============================================================ -->
+  <style>
+    .fm-lineup-intro{ max-width:720px; margin:0 auto 48px; }
+    .fm-products-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; width:100%; box-sizing:border-box; }
+    .fm-product-card{
+      min-width:0; background:var(--fm-white); border:1px solid #ece9e2; border-radius:18px;
+      padding:26px; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(20,20,20,.05);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .fm-product-card:hover{ transform:translateY(-6px); box-shadow:0 20px 34px -22px rgba(20,20,20,.28); }
+
+    .fm-product-card.fm-blue{ background:var(--fm-blue); border-color:var(--fm-blue); }
+    .fm-product-card.fm-blue h3{ color:#fff; }
+    .fm-product-card.fm-blue p{ color:#dcebf6; }
+    .fm-product-card.fm-blue .fm-product-count{ background:rgba(255,255,255,.2); color:#fff; }
+
+    .fm-product-img{
+      width:100%; aspect-ratio:1/1; border-radius:14px; margin-bottom:20px; overflow:hidden;
+      background-color:#fff; background-size:contain; background-repeat:no-repeat; background-position:center;
+    }
+    .fm-product-count{
+      display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px;
+      letter-spacing:.06em; text-transform:uppercase; color:var(--fm-blue); background:rgba(55,134,198,.1);
+      padding:5px 12px; border-radius:20px; margin-bottom:14px; width:fit-content;
+    }
+    .fm-product-card h3{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:18px; color:var(--fm-black);
+      margin:0 0 10px; line-height:1.3;
+    }
+    .fm-product-card p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.6; margin:0 0 22px; flex-grow:1; }
+    .fm-product-card .fm-btn{ text-align:center; }
+    @media (max-width:900px){ .fm-products-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+  </style>
+
+  <section class="fm-section" id="products">
+    <div class="fm-container">
+      <div class="fm-lineup-intro fm-center">
+        <h2 class="fm-h2">Meet the Famora essentials lineup.</h2>
+        <p class="fm-body">Famora is starting with practical OTC essentials for allergy relief and everyday adult pain relief needs, available through Amazon.</p>
+      </div>
+      <div class="fm-products-grid">
+
+        <div class="fm-product-card fm-blue reveal">
+          <div class="fm-product-img" role="img" aria-label="Famora Allergy Relief 25mg Diphenhydramine HCl" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/efde4987-e8c7-494f-a699-d5a2c07355e8/ChatGPT+Image+7+jul+2026%2C+23_12_30.png?content-type=image%2Fpng');"></div>
+          <span class="fm-product-count">650 count</span>
+          <h3>Allergy Relief 25mg Diphenhydramine HCl</h3>
+          <p>OTC antihistamine caplets for sneezing, itchy/watery eyes, and runny nose.</p>
+          <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Shop Diphenhydramine on Amazon</a>
+        </div>
+
+        <div class="fm-product-card reveal">
+          <div class="fm-product-img" role="img" aria-label="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/d81fb38a-61fd-43e0-a8df-29781c9bcd4a/Cetirizine+Hydrochloride+10mg+365+Count+1.jpg?content-type=image%2Fjpeg');"></div>
+          <span class="fm-product-count">365 tablets</span>
+          <h3>24-Hour Allergy Relief Cetirizine HCl 10mg</h3>
+          <p>24-hour allergy relief for adults and children 6+.</p>
+          <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Shop Cetirizine on Amazon</a>
+        </div>
+
+        <div class="fm-product-card fm-blue reveal">
+          <div class="fm-product-img" role="img" aria-label="Famora Low Dose Aspirin 81mg Enteric Coated Tablets" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/b34a6707-2d69-4aa6-b227-ad7a38043e73/Image+1+%283%29.png?content-type=image%2Fpng');"></div>
+          <span class="fm-product-count">500 count</span>
+          <h3>Low Dose Aspirin 81mg Enteric Coated Tablets</h3>
+          <p>Adult low dose aspirin tablets in a practical 500-count format. Always use as directed.</p>
+          <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Shop Aspirin on Amazon</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 6 — PRODUCT DEEP-DIVE (3 products)
+  ============================================================ -->
+  <style>
+    .fm-deepdive{ background:var(--fm-neutral); }
+    .fm-deepdive-intro{ max-width:640px; margin:0 0 44px; }
+    .fm-dd-row{
+      display:grid; grid-template-columns:.85fr 1.15fr; gap:52px; align-items:center;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-dd-row > *{ min-width:0; }
+    .fm-dd-row + .fm-dd-row{ margin-top:72px; padding-top:72px; border-top:1px solid #e2ddd1; }
+    .fm-dd-row.fm-dd-reverse .fm-dd-visual{ order:2; }
+    .fm-dd-visual{
+      width:100%; max-width:380px; aspect-ratio:1/1; border-radius:18px; overflow:hidden;
+      background-color:#fff; background-size:contain; background-repeat:no-repeat; background-position:center;
+      border:1.5px solid transparent; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .fm-dd-row:hover .fm-dd-visual{
+      transform:scale(1.035); border-color:var(--fm-blue); box-shadow:0 16px 30px -20px rgba(31,77,115,.35);
+    }
+    .fm-dd-count{
+      display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px;
+      letter-spacing:.06em; text-transform:uppercase; color:var(--fm-blue-dark);
+      background:rgba(55,134,198,.1); padding:5px 12px; border-radius:20px; margin-bottom:12px;
+    }
+    .fm-dd-row h3{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:20px; color:var(--fm-black); margin:0 0 12px; }
+    .fm-dd-list{ list-style:none; margin:0 0 22px; padding:0; }
+    .fm-dd-list li{
+      font-family:'Open Sans',sans-serif; font-size:15px; color:#3a3a3a; line-height:1.6;
+      padding-left:24px; position:relative; margin-bottom:10px;
+    }
+    .fm-dd-list li::before{
+      content:""; position:absolute; left:0; top:8px; width:8px; height:8px; border-radius:50%;
+      background:var(--fm-orange);
+    }
+    .fm-dd-note{
+      font-family:'Open Sans',sans-serif; font-size:13px; font-style:italic; color:#7a756a;
+      margin-top:16px;
+    }
+    @media (prefers-reduced-motion:reduce){
+      .fm-dd-visual{ transition:none; }
+      .fm-dd-row:hover .fm-dd-visual{ transform:none; }
+    }
+    @media (max-width:820px){
+      .fm-dd-row, .fm-dd-row.fm-dd-reverse{ grid-template-columns:1fr; }
+      .fm-dd-row.fm-dd-reverse .fm-dd-visual{ order:-1; }
+      .fm-dd-visual{ max-width:280px; margin:0 auto; }
+    }
+  </style>
+
+  <section class="fm-section fm-deepdive" id="product-details">
+    <div class="fm-container">
+      <div class="fm-deepdive-intro">
+        <p class="fm-eyebrow">Product details</p>
+        <h2 class="fm-h2">A closer look at each product.</h2>
+      </div>
+
+      <!-- Product 1: Diphenhydramine -->
+      <div class="fm-dd-row reveal">
+        <div class="fm-dd-visual" role="img" aria-label="Famora Allergy Relief 25mg Diphenhydramine HCl" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/efde4987-e8c7-494f-a699-d5a2c07355e8/ChatGPT+Image+7+jul+2026%2C+23_12_30.png?content-type=image%2Fpng');"></div>
+        <div>
+          <span class="fm-dd-count">650 count</span>
+          <h3>Allergy relief support in a high-count bottle.</h3>
+          <p class="fm-body">Famora Allergy Relief 25mg Diphenhydramine HCl is an OTC antihistamine caplet option for common allergy symptoms such as sneezing, itchy/watery eyes, and runny nose.</p>
+          <ul class="fm-dd-list">
+            <li>High-count 650 caplet bottle for practical household stocking.</li>
+            <li>Designed for families and prepared households that want OTC allergy relief available at home.</li>
+            <li>Best used exactly as directed on the product label.</li>
+          </ul>
+          <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Shop Diphenhydramine on Amazon</a>
+          <p class="fm-dd-note">Responsible-use note: Always read and follow the product label directions.</p>
+        </div>
+      </div>
+
+      <!-- Product 2: Cetirizine -->
+      <div class="fm-dd-row fm-dd-reverse reveal">
+        <div class="fm-dd-visual" role="img" aria-label="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/d81fb38a-61fd-43e0-a8df-29781c9bcd4a/Cetirizine+Hydrochloride+10mg+365+Count+1.jpg?content-type=image%2Fjpeg');"></div>
+        <div>
+          <span class="fm-dd-count">365 tablets</span>
+          <h3>Daily allergy relief support for prepared households.</h3>
+          <p class="fm-body">Famora Cetirizine HCl 10mg is a 24-hour allergy relief option for adults and children 6+, made for households that want allergy essentials ready at home.</p>
+          <ul class="fm-dd-list">
+            <li>365-count format for convenient household supply.</li>
+            <li>Relevant for common indoor and outdoor allergy triggers.</li>
+            <li>A practical option for households planning ahead for allergy season.</li>
+          </ul>
+          <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Shop Cetirizine on Amazon</a>
+          <p class="fm-dd-note">Responsible-use note: Always read and follow the product label directions.</p>
+        </div>
+      </div>
+
+      <!-- Product 3: Aspirin -->
+      <div class="fm-dd-row reveal">
+        <div class="fm-dd-visual" role="img" aria-label="Famora Low Dose Aspirin 81mg Enteric Coated Tablets" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/b34a6707-2d69-4aa6-b227-ad7a38043e73/Image+1+%283%29.png?content-type=image%2Fpng');"></div>
+        <div>
+          <span class="fm-dd-count">500 count</span>
+          <h3>Low dose aspirin in a practical high-count format.</h3>
+          <p class="fm-body">Famora Low Dose Aspirin 81mg Enteric Coated Tablets is an adult OTC aspirin product in a practical 500-count format. Always use as directed and follow the product label.</p>
+          <ul class="fm-dd-list">
+            <li>500-count bottle for adults using the product as directed.</li>
+            <li>Enteric coated tablet format.</li>
+            <li>Practical high-count supply for the home medicine cabinet.</li>
+          </ul>
+          <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Shop Aspirin on Amazon</a>
+          <p class="fm-dd-note">Responsible-use note: Always read and follow the product label directions.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 7 — SMART VALUE / HIGH-COUNT BENEFITS
+  ============================================================ -->
+  <style>
+    .fm-value-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-value-grid > *{ min-width:0; }
+
+    .fm-benefit-list{ margin-top:20px; }
+    .fm-benefit{ display:flex; gap:14px; align-items:flex-start; margin-bottom:18px; }
+    .fm-benefit-idx{
+      width:28px; height:28px; border-radius:50%; background:rgba(252,163,17,.15); color:#a55c05;
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px;
+      display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+    }
+    .fm-benefit h3{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:16px; color:var(--fm-black); margin:0 0 3px;
+    }
+    .fm-benefit p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.6; margin:0; }
+
+    .fm-big-numbers{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .fm-bn-card{
+      background:var(--fm-white); border:1px solid #ece9e2; border-radius:16px; padding:26px; text-align:center;
+    }
+    .fm-bn-card .fm-n{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:2.3rem; color:var(--fm-blue); }
+    .fm-bn-card .fm-l{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase;
+      letter-spacing:.04em; color:#5a5a5a; margin-top:6px;
+    }
+    @media (max-width:900px){ .fm-value-grid{ grid-template-columns:1fr; } }
+  </style>
+
+  <section class="fm-section" id="smart-value">
+    <div class="fm-container fm-value-grid">
+      <div>
+        <p class="fm-eyebrow">Smart value</p>
+        <h2 class="fm-h2">More per bottle. Fewer restocks. Smarter everyday value.</h2>
+        <p class="fm-body">Famora focuses on high-count OTC essentials because prepared households need products that last longer, are easier to keep stocked, and deliver practical value over time.</p>
+        <div class="fm-benefit-list">
+          <div class="fm-benefit"><div class="fm-benefit-idx">1</div><div><h3>Fewer restocks</h3><p>Keep everyday OTC essentials available without frequent pharmacy runs.</p></div></div>
+          <div class="fm-benefit"><div class="fm-benefit-idx">2</div><div><h3>Better household preparedness</h3><p>Stock the medicine cabinet before symptoms disrupt the day.</p></div></div>
+          <div class="fm-benefit"><div class="fm-benefit-idx">3</div><div><h3>Smart value</h3><p>High-count bottles help shoppers think beyond the shelf price and consider what they actually get.</p></div></div>
+          <div class="fm-benefit"><div class="fm-benefit-idx">4</div><div><h3>Convenient for families</h3><p>Practical formats for homes that like to stay ready.</p></div></div>
+        </div>
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop high-count OTC essentials on Amazon</a>
+      </div>
+      <div class="fm-big-numbers reveal">
+        <div class="fm-bn-card"><div class="fm-n">650</div><div class="fm-l">Diphenhydramine</div></div>
+        <div class="fm-bn-card"><div class="fm-n">365</div><div class="fm-l">Cetirizine</div></div>
+        <div class="fm-bn-card"><div class="fm-n">500</div><div class="fm-l">Aspirin</div></div>
+        <div class="fm-bn-card"><div class="fm-n">1</div><div class="fm-l">Amazon cart</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 8 — HOUSEHOLD PREPAREDNESS
+  ============================================================ -->
+  <style>
+    .fm-prep{ background:var(--fm-neutral); }
+    .fm-prep-intro{ max-width:680px; margin:0 0 34px; }
+    .fm-usecases{
+      display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-usecase{
+      background:var(--fm-white); border:1px solid #ece9e2; border-radius:14px;
+      padding:20px 16px; font-family:'Open Sans',sans-serif; font-size:14px; color:#5a5a5a;
+      text-align:left; line-height:1.5;
+    }
+    .fm-usecase .fm-n{
+      display:block; font-family:'Montserrat',sans-serif; font-weight:700; color:var(--fm-blue);
+      margin-bottom:8px; font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    }
+    @media (max-width:900px){ .fm-usecases{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px){ .fm-usecases{ grid-template-columns:1fr; } }
+  </style>
+
+  <section class="fm-section fm-prep" id="household-preparedness">
+    <div class="fm-container">
+      <div class="fm-prep-intro">
+        <p class="fm-eyebrow">Household preparedness</p>
+        <h2 class="fm-h2">Be ready for everyday symptoms at home.</h2>
+        <p class="fm-body">From seasonal allergies to routine medicine cabinet restocking, Famora helps households keep practical OTC essentials within reach.</p>
+      </div>
+      <div class="fm-usecases">
+        <div class="fm-usecase"><span class="fm-n">01</span>Seasonal allergy preparation</div>
+        <div class="fm-usecase"><span class="fm-n">02</span>Indoor triggers &mdash; dust, pet dander, mold</div>
+        <div class="fm-usecase"><span class="fm-n">03</span>Home medicine cabinet restocking</div>
+        <div class="fm-usecase"><span class="fm-n">04</span>Family and travel preparedness</div>
+        <div class="fm-usecase"><span class="fm-n">05</span>Practical OTC essentials for adults and families, used as directed and according to the product label</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 9 — QUALITY AND TRUST
+  ============================================================ -->
+  <style>
+    .fm-trust-grid{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:center;
+      width:100%; box-sizing:border-box;
+    }
+    .fm-trust-grid > *{ min-width:0; }
+    .fm-trust-points{ margin-top:16px; }
+    .fm-trust-point{ display:flex; gap:12px; align-items:flex-start; margin-bottom:15px; }
+    .fm-trust-point svg{ width:20px; height:20px; color:var(--fm-blue); flex:0 0 auto; margin-top:2px; }
+    .fm-trust-point p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#3a3a3a; line-height:1.6; margin:0; }
+    .fm-trust-visual{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .fm-trust-cell{
+      background:var(--fm-white); border:1px solid #ece9e2; border-radius:14px; height:100px;
+      display:flex; align-items:center; justify-content:center; color:var(--fm-blue-dark);
+    }
+    .fm-trust-cell svg{ width:30px; height:30px; }
+    @media (max-width:900px){ .fm-trust-grid{ grid-template-columns:1fr; } .fm-trust-visual{ max-width:340px; } }
+  </style>
+
+  <section class="fm-section" id="quality-trust">
+    <div class="fm-container fm-trust-grid">
+      <div>
+        <p class="fm-eyebrow">Quality and trust</p>
+        <h2 class="fm-h2">Clear, practical OTC essentials you can understand.</h2>
+        <p class="fm-body">Famora keeps the product experience simple: familiar OTC categories, clear product information, high-count formats, and easy access through Amazon.</p>
+        <div class="fm-trust-points">
+          <div class="fm-trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Clear product labeling and straightforward product information.</p></div>
+          <div class="fm-trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Familiar active ingredients in practical OTC categories.</p></div>
+          <div class="fm-trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Product information that follows official packaging and Amazon listing details.</p></div>
+          <div class="fm-trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Available through Amazon for a simple shopping experience.</p></div>
+        </div>
+        <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">View Famora products on Amazon</a>
+      </div>
+      <div class="fm-trust-visual reveal">
+        <div class="fm-trust-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <div class="fm-trust-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"/></svg></div>
+        <div class="fm-trust-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="fm-trust-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 10 — HOW TO BUY FAMORA
+  ============================================================ -->
+  <style>
+    .fm-buy{ background:var(--fm-neutral); }
+    .fm-buy-intro{ max-width:680px; margin:0 0 40px; }
+    .fm-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:40px; }
+    .fm-step{ text-align:left; position:relative; }
+    .fm-step-num{
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:34px;
+      color:rgba(55,134,198,.15); -webkit-text-stroke:1.6px var(--fm-blue);
+      display:block; margin-bottom:10px; line-height:1;
+    }
+    .fm-step h3{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:16px; color:var(--fm-black); margin:0 0 6px; }
+    .fm-step p{ font-family:'Open Sans',sans-serif; font-size:14px; color:#5a5a5a; line-height:1.6; margin:0; }
+    @media (max-width:900px){ .fm-steps{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px){ .fm-steps{ grid-template-columns:1fr; } }
+  </style>
+
+  <section class="fm-section fm-buy" id="how-to-buy">
+    <div class="fm-container">
+      <div class="fm-buy-intro">
+        <p class="fm-eyebrow">How to buy</p>
+        <h2 class="fm-h2">Shop Famora on Amazon in a few simple steps.</h2>
+      </div>
+      <div class="fm-steps">
+        <div class="fm-step">
+          <span class="fm-step-num">1</span>
+          <h3>Choose your product</h3>
+          <p>Choose the Famora product that fits your household needs.</p>
+        </div>
+        <div class="fm-step">
+          <span class="fm-step-num">2</span>
+          <h3>Go to Amazon</h3>
+          <p>Click through to the Famora Amazon Storefront or the individual product listing.</p>
+        </div>
+        <div class="fm-step">
+          <span class="fm-step-num">3</span>
+          <h3>Review the details</h3>
+          <p>Review the product information and label directions on Amazon.</p>
+        </div>
+        <div class="fm-step">
+          <span class="fm-step-num">4</span>
+          <h3>Stock up</h3>
+          <p>Add Famora to your home medicine cabinet.</p>
+        </div>
+      </div>
+      <div class="fm-cta-row">
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop the Famora Storefront</a>
+        <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Shop Cetirizine</a>
+        <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Shop Aspirin</a>
+        <a class="fm-btn fm-btn-secondary" href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Shop Diphenhydramine</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">About Famora</div>
+        <h2>Everyday OTC care, made practical.</h2>
+        <p>Famora is a practical OTC healthcare brand focused on helping U.S. households stay prepared with trusted, high-count everyday essentials at smart value.</p>
+        <p>The brand is built for families and shoppers who want clear product information, familiar OTC categories, and convenient access through Amazon.</p>
+        <div class="closing-line">Famora keeps household care simple: useful products, practical quantities, and straightforward value.</div>
+      </div>
+      <div class="about-mark reveal">
+        <svg viewBox="0 0 220 120" width="100%">
+          <text x="110" y="65" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="36" fill="#3786c6">FAM<tspan fill="#fca311">O</tspan>RA</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    SECTION 12 — FAQ
+  ============================================================ -->
+  <style>
+    .fm-faq{ background:var(--fm-neutral); }
+    .fm-faq-intro{ max-width:680px; margin:0 0 40px; }
+    .fm-faq-list{ max-width:780px; margin:0; text-align:left; }
+    .fm-faq-item{ border-bottom:1px solid #ece9e2; }
+    .fm-faq-q{
+      width:100%; text-align:left; background:none; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:18px 4px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:16px;
+      color:var(--fm-black);
+    }
+    .fm-faq-q .fm-faq-icon{ flex-shrink:0; width:22px; height:22px; position:relative; }
+    .fm-faq-q .fm-faq-icon::before, .fm-faq-q .fm-faq-icon::after{
+      content:""; position:absolute; background:var(--fm-blue); border-radius:2px;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .fm-faq-q .fm-faq-icon::before{ width:14px; height:2px; top:10px; left:4px; }
+    .fm-faq-q .fm-faq-icon::after{ width:2px; height:14px; top:4px; left:10px; }
+    .fm-faq-item.fm-open .fm-faq-icon::after{ transform:rotate(90deg); opacity:0; }
+    .fm-faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+    .fm-faq-a p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.65; padding:0 4px 20px; margin:0; text-align:left; }
+  </style>
+
+  <section class="fm-section fm-faq" id="faq">
+    <div class="fm-container">
+      <div class="fm-faq-intro">
+        <p class="fm-eyebrow">FAQ</p>
+        <h2 class="fm-h2">Common questions</h2>
+      </div>
+      <div class="fm-faq-list" id="fm-faq-list">
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-1" aria-expanded="false" aria-controls="fm-faq-a-1"><span>Where can I buy Famora products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-1" role="region" aria-labelledby="fm-faq-q-1"><p>Famora products are available on Amazon. Use the buttons on this page to visit the Famora Storefront or the individual product listings.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-2" aria-expanded="false" aria-controls="fm-faq-a-2"><span>What products does Famora currently offer?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-2" role="region" aria-labelledby="fm-faq-q-2"><p>Famora&rsquo;s initial lineup includes Allergy Relief 25mg Diphenhydramine HCl, 24-Hour Allergy Relief Cetirizine HCl 10mg, and Low Dose Aspirin 81mg Enteric Coated Tablets.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-3" aria-expanded="false" aria-controls="fm-faq-a-3"><span>Why does Famora focus on high-count bottles?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-3" role="region" aria-labelledby="fm-faq-q-3"><p>High-count OTC products can be practical for households that want to stay stocked, reduce frequent restocking, and get smart everyday value from each bottle.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-4" aria-expanded="false" aria-controls="fm-faq-a-4"><span>Are Famora products for families?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-4" role="region" aria-labelledby="fm-faq-q-4"><p>Famora is designed for prepared households. Always review each product label for directions, warnings, age guidance, and whether the product is appropriate for your situation.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-5" aria-expanded="false" aria-controls="fm-faq-a-5"><span>How should I use Famora products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-5" role="region" aria-labelledby="fm-faq-q-5"><p>Always read and follow the product label directions. If you have questions about whether a product is right for you, consult a healthcare professional.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-6" aria-expanded="false" aria-controls="fm-faq-a-6"><span>How does Famora describe its products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-6" role="region" aria-labelledby="fm-faq-q-6"><p>Famora uses product information from official packaging, product labels, and Amazon listings so customers can understand each product clearly.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-7" aria-expanded="false" aria-controls="fm-faq-a-7"><span>Does Famora sell directly from this website?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-7" role="region" aria-labelledby="fm-faq-q-7"><p>For the first version of the landing page, the primary purchase path is Amazon. Visitors are directed to the Famora Amazon Storefront or product-specific Amazon listings.</p></div>
+        </div>
+
+        <div class="fm-faq-item">
+          <button class="fm-faq-q" id="fm-faq-q-8" aria-expanded="false" aria-controls="fm-faq-a-8"><span>Does Famora offer customer support?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+          <div class="fm-faq-a" id="fm-faq-a-8" role="region" aria-labelledby="fm-faq-q-8"><p>For product-specific questions, please review the Amazon listing and product label information. A support contact can be added later if Famora provides one.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var list = document.getElementById('fm-faq-list');
+    if (!list || list.getAttribute('data-fm-bound')) return;
+    list.setAttribute('data-fm-bound', 'true');
+    list.querySelectorAll('.fm-faq-item').forEach(function(item){
+      var btn = item.querySelector('.fm-faq-q');
+      var answer = item.querySelector('.fm-faq-a');
+      btn.addEventListener('click', function(){
+        var isOpen = item.classList.contains('fm-open');
+        list.querySelectorAll('.fm-faq-item.fm-open').forEach(function(open){
+          if (open !== item){
+            open.classList.remove('fm-open');
+            open.querySelector('.fm-faq-a').style.maxHeight = null;
+            open.querySelector('.fm-faq-q').setAttribute('aria-expanded', 'false');
+          }
+        });
+        if (isOpen){
+          item.classList.remove('fm-open');
+          answer.style.maxHeight = null;
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('fm-open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+  </script>
+
+  <!-- SAFETY NOTE -->
+  <section>
+    <div class="wrap">
+      <div class="safety-box">
+        <h3>Use OTC products responsibly.</h3>
+        <p>Always read and follow the product label directions. Review warnings, dosage instructions, and age guidance before use. If you have questions about whether a product is right for you, consult a healthcare professional.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="padding-bottom:110px;">
+    <div class="wrap">
+      <div class="final-box reveal">
+        <h2>Stock your home with practical OTC essentials from Famora.</h2>
+        <p>Explore high-count allergy relief and everyday OTC essentials designed for prepared households.</p>
+        <a class="btn btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop Famora on Amazon</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="mobile-cta" id="mobileCta">
+  <a class="btn btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop Famora on Amazon</a>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-logo">FAMORA</div>
+      <div class="footer-links">
+        <a href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Amazon Storefront</a>
+        <a href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Cetirizine</a>
+        <a href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Aspirin</a>
+        <a href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Diphenhydramine</a>
+        <a href="legal-notice.html">Legal Notice</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="margin:0; max-width:52ch; color:#8a9096;">Always read and follow the product label directions. Review warnings, dosage instructions, and age guidance before use. If you have questions about whether a product is right for you, consult a healthcare professional.</p>
+      <span>&copy; Famora. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var navToggle = document.getElementById('navToggle');
+  var siteNav = document.getElementById('siteNav');
+  if(navToggle && siteNav){
+    navToggle.addEventListener('click', function(){
+      var isOpen = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      siteNav.style.maxHeight = isOpen ? siteNav.scrollHeight + 'px' : '0px';
+    });
+    siteNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        siteNav.classList.remove('open');
+        siteNav.style.maxHeight = '0px';
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  var header = document.getElementById('siteHeader');
+  var hero = document.querySelector('.fm-hero');
+  var footerEl = document.querySelector('footer.site');
+  var mobileCta = document.getElementById('mobileCta');
+  var ticking = false;
+  function onScroll(){
+    if(header) header.classList.toggle('scrolled', window.scrollY > 12);
+    if(hero && footerEl && mobileCta){
+      var pastHero = hero.getBoundingClientRect().bottom < 0;
+      var nearFooter = footerEl.getBoundingClientRect().top < window.innerHeight * 0.9;
+      mobileCta.classList.toggle('show', pastHero && !nearFooter);
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(onScroll); ticking = true; } }, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in-view'); obs.unobserve(entry.target); }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>

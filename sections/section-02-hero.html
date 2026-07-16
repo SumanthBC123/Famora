@@ -1,0 +1,79 @@
+<!-- ============================================================
+  SECTION 2 — HERO
+============================================================ -->
+<style>
+  .fm-hero{ background:var(--fm-neutral); padding:96px 24px; width:100%; box-sizing:border-box; }
+  .fm-hero-inner{
+    max-width:1120px; width:100%; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr;
+    gap:24px; align-items:stretch; box-sizing:border-box;
+  }
+  .fm-hero-inner > *{ min-width:0; }
+  .fm-hero-text{ padding:12px 8px; align-self:center; }
+  .fm-hero h1{ font-size:clamp(34px,4.6vw,54px); }
+  .fm-hero-sub{ font-family:'Open Sans',sans-serif; font-size:19px; color:#3a3a3a; line-height:1.65; margin:0 0 12px; }
+  .fm-hero-support{ font-family:'Open Sans',sans-serif; font-weight:700; font-size:15px; color:var(--fm-blue-dark); margin:14px 0 26px; }
+
+  .fm-hero-right{ display:grid; grid-template-rows:1.1fr 1fr; gap:18px; }
+  .fm-hero-photo{
+    background:var(--fm-white, #ffffff); border:1px solid var(--fm-line, #e2ddd0); border-radius:18px;
+    overflow:hidden; min-height:200px; box-shadow:0 20px 40px -28px rgba(31,77,115,.35);
+  }
+  .fm-hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .fm-hero-shelf{ background:var(--fm-blue-dark); border-radius:18px; padding:26px; color:#fff; }
+  .fm-shelf-label{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; color:#a9c9e4; margin:0 0 12px;
+  }
+  .fm-shelf-item{
+    display:flex; justify-content:space-between; align-items:baseline; padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,.14); font-size:14px;
+  }
+  .fm-shelf-item:last-child{ border-bottom:none; }
+  .fm-shelf-item .fm-shelf-name{ font-family:'Montserrat',sans-serif; font-weight:700; }
+  .fm-shelf-item .fm-shelf-count{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:18px; color:var(--fm-orange); }
+
+  @media (max-width:860px){
+    .fm-hero-inner{ grid-template-columns:1fr; }
+    .fm-hero-right{ grid-template-rows:1fr 1fr; }
+  }
+</style>
+
+<section class="fm-hero" id="hero">
+  <div class="fm-hero-inner">
+    <div class="fm-hero-text">
+      <p class="fm-eyebrow">High-count OTC essentials, available on Amazon</p>
+      <h1 class="fm-h1">High-count OTC essentials for everyday household care.</h1>
+      <p class="fm-hero-sub">Famora offers trusted, high-count over-the-counter essentials designed to help households stay ready for everyday allergy and pain relief needs.</p>
+      <p class="fm-hero-support">Practical products. Clear value. Simple household preparedness.</p>
+      <div class="fm-cta-row">
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener">Shop Famora on Amazon</a>
+        <a class="fm-btn fm-btn-secondary" href="#products" id="fm-explore-products">Explore Products</a>
+      </div>
+    </div>
+    <div class="fm-hero-right">
+      <div class="fm-hero-photo">
+        <img src="https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/59da6664-d1ea-4230-a27e-a29e56bf8d00/Hero+-+Everydat+OTC.png" alt="Famora Allergy Relief bottle in a home medicine cabinet">
+      </div>
+      <div class="fm-hero-shelf">
+        <p class="fm-shelf-label">Famora essentials</p>
+        <div class="fm-shelf-item"><span class="fm-shelf-name">Diphenhydramine 25mg</span><span class="fm-shelf-count">650</span></div>
+        <div class="fm-shelf-item"><span class="fm-shelf-name">Cetirizine 10mg</span><span class="fm-shelf-count">365</span></div>
+        <div class="fm-shelf-item"><span class="fm-shelf-name">Low Dose Aspirin 81mg</span><span class="fm-shelf-count">500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var btn = document.getElementById('fm-explore-products');
+  if (!btn || btn.getAttribute('data-fm-bound')) return;
+  btn.setAttribute('data-fm-bound', 'true');
+  btn.addEventListener('click', function(e){
+    var target = document.getElementById('products');
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+})();
+</script>

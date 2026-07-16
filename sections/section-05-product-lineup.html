@@ -1,0 +1,71 @@
+<!-- ============================================================
+  SECTION 5 — PRODUCT LINEUP OVERVIEW
+============================================================ -->
+<style>
+  .fm-lineup-intro{ max-width:720px; margin:0 auto 48px; }
+  .fm-products-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; width:100%; box-sizing:border-box; }
+  .fm-product-card{
+    min-width:0; background:var(--fm-white); border:1px solid #ece9e2; border-radius:18px;
+    padding:26px; display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(20,20,20,.05);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .fm-product-card:hover{ transform:translateY(-6px); box-shadow:0 20px 34px -22px rgba(20,20,20,.28); }
+
+  .fm-product-card.fm-blue{ background:var(--fm-blue); border-color:var(--fm-blue); }
+  .fm-product-card.fm-blue h3{ color:#fff; }
+  .fm-product-card.fm-blue p{ color:#dcebf6; }
+  .fm-product-card.fm-blue .fm-product-count{ background:rgba(255,255,255,.2); color:#fff; }
+
+  .fm-product-img{
+    width:100%; aspect-ratio:1/1; border-radius:14px; margin-bottom:20px; overflow:hidden;
+    background-color:#fff; background-size:contain; background-repeat:no-repeat; background-position:center;
+  }
+  .fm-product-count{
+    display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--fm-blue); background:rgba(55,134,198,.1);
+    padding:5px 12px; border-radius:20px; margin-bottom:14px; width:fit-content;
+  }
+  .fm-product-card h3{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:18px; color:var(--fm-black);
+    margin:0 0 10px; line-height:1.3;
+  }
+  .fm-product-card p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.6; margin:0 0 22px; flex-grow:1; }
+  .fm-product-card .fm-btn{ text-align:center; }
+  @media (max-width:900px){ .fm-products-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+</style>
+
+<section class="fm-section" id="products">
+  <div class="fm-container">
+    <div class="fm-lineup-intro fm-center">
+      <h2 class="fm-h2">Meet the Famora essentials lineup.</h2>
+      <p class="fm-body">Famora is starting with practical OTC essentials for allergy relief and everyday adult pain relief needs, available through Amazon.</p>
+    </div>
+    <div class="fm-products-grid">
+
+      <div class="fm-product-card fm-blue">
+        <div class="fm-product-img" role="img" aria-label="Famora Allergy Relief 25mg Diphenhydramine HCl" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/efde4987-e8c7-494f-a699-d5a2c07355e8/ChatGPT+Image+7+jul+2026%2C+23_12_30.png?content-type=image%2Fpng');"></div>
+        <span class="fm-product-count">650 count</span>
+        <h3>Allergy Relief 25mg Diphenhydramine HCl</h3>
+        <p>OTC antihistamine caplets for sneezing, itchy/watery eyes, and runny nose.</p>
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Shop Diphenhydramine on Amazon</a>
+      </div>
+
+      <div class="fm-product-card">
+        <div class="fm-product-img" role="img" aria-label="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/d81fb38a-61fd-43e0-a8df-29781c9bcd4a/Cetirizine+Hydrochloride+10mg+365+Count+1.jpg?content-type=image%2Fjpeg');"></div>
+        <span class="fm-product-count">365 tablets</span>
+        <h3>24-Hour Allergy Relief Cetirizine HCl 10mg</h3>
+        <p>24-hour allergy relief for adults and children 6+.</p>
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener">Shop Cetirizine on Amazon</a>
+      </div>
+
+      <div class="fm-product-card fm-blue">
+        <div class="fm-product-img" role="img" aria-label="Famora Low Dose Aspirin 81mg Enteric Coated Tablets" style="background-image:url('https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/b34a6707-2d69-4aa6-b227-ad7a38043e73/Image+1+%283%29.png?content-type=image%2Fpng');"></div>
+        <span class="fm-product-count">500 count</span>
+        <h3>Low Dose Aspirin 81mg Enteric Coated Tablets</h3>
+        <p>Adult low dose aspirin tablets in a practical 500-count format. Always use as directed.</p>
+        <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Shop Aspirin on Amazon</a>
+      </div>
+
+    </div>
+  </div>
+</section>

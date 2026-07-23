@@ -51,14 +51,21 @@
   .header-cta{display:flex; align-items:center; gap:14px;}
   @media (max-width:860px){ nav.anchors{display:none;} }
 
-  /* BLOG HERO — simple, text-led, no sales framing */
-  .blog-hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
-  .blog-hero .wrap{max-width:820px;}
-  .blog-hero h1{font-size:clamp(1.9rem,1.3rem+2.4vw,2.6rem);}
-  .blog-hero p{font-size:1.05rem; max-width:62ch;}
+  /* BLOG HERO — text + visual, no sales framing */
+  .blog-hero{padding:64px 0 52px; border-bottom:1px solid var(--line); background:var(--neutral);}
+  .blog-hero-inner{display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center;}
+  .blog-hero-inner > *{min-width:0;}
+  .blog-hero-text{padding:4px 0;}
+  .blog-hero h1{font-size:clamp(1.9rem,1.3rem+2.4vw,2.6rem); margin-bottom:12px;}
+  .blog-hero p{font-size:1rem; max-width:52ch; margin-bottom:10px;}
+  .blog-hero-visual{border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:0 20px 40px -28px rgba(31,77,115,.35); aspect-ratio:4/3;}
+  .blog-hero-visual img{width:100%; height:100%; object-fit:cover; display:block;}
+  @media (max-width:900px){ .blog-hero-inner{grid-template-columns:1fr;} }
+
+  .topics-label{font-family:var(--display); font-weight:700; font-size:0.82rem; color:var(--ink-soft); margin:32px 0 10px;}
 
   /* CATEGORY PILLS — decorative for v1, no filtering logic yet */
-  .categories{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 0;}
+  .categories{display:flex; flex-wrap:wrap; gap:10px; margin:0;}
   .cat-pill{
     font-family:var(--display); font-weight:700; font-size:0.78rem; color:var(--blue-deep);
     background:var(--blue-tint); border:1px solid var(--blue-tint); padding:7px 14px; border-radius:20px;
@@ -89,7 +96,7 @@
   }
 
   /* DISCLAIMER */
-  .safety-box{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:12px; padding:26px 28px; max-width:820px;}
+  .safety-box{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:12px; padding:22px 26px; max-width:820px; margin:24px 0 0;}
   .safety-box p{margin:0; font-size:0.9rem;}
 
   /* FINAL CTA */
@@ -133,10 +140,18 @@
   <!-- HERO -->
   <section class="blog-hero">
     <div class="wrap">
-      <div class="eyebrow">Famora Blog</div>
-      <h1>Everyday OTC Preparedness, Made Simple</h1>
-      <p>Clear, practical guidance to help households stay ready for allergy season, indoor triggers, and everyday medicine cabinet restocking.</p>
-      <p>Famora&rsquo;s educational content is designed to help households better understand everyday OTC essentials, allergy triggers, product restocking, and practical home preparedness. Always read and follow product label directions, and consult a healthcare professional for medical questions.</p>
+      <div class="blog-hero-inner">
+        <div class="blog-hero-text">
+          <div class="eyebrow">Famora Resources</div>
+          <h1>Everyday OTC Preparedness, Made Simple</h1>
+          <p>Clear, practical guidance to help households stay ready for allergy season, indoor triggers, and everyday medicine cabinet restocking.</p>
+          <p>Famora&rsquo;s educational content is designed to help households better understand everyday OTC essentials, allergy triggers, product restocking, and practical home preparedness. Always read and follow product label directions, and consult a healthcare professional for medical questions.</p>
+        </div>
+        <div class="blog-hero-visual">
+          <img src="https://images.squarespace-cdn.com/content/6a47d29a5153dc5737dc7791/59da6664-d1ea-4230-a27e-a29e56bf8d00/Hero+-+Everydat+OTC.png" alt="Famora OTC essentials in a home setting">
+        </div>
+      </div>
+      <div class="topics-label">Topics we&rsquo;ll cover:</div>
       <div class="categories">
         <span class="cat-pill">Allergy Relief</span>
         <span class="cat-pill">Home Medicine Cabinet</span>
@@ -156,52 +171,46 @@
           <span class="post-cat">Allergy Relief</span>
           <h3>Understanding common seasonal allergy triggers</h3>
           <p>A look at what tends to cause seasonal allergy symptoms and how households typically plan around them.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
         <div class="post-card">
           <span class="post-cat">Home Medicine Cabinet</span>
           <h3>A simple approach to restocking your medicine cabinet</h3>
           <p>Practical guidance on keeping everyday OTC essentials on hand before you need them.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
         <div class="post-card">
           <span class="post-cat">OTC Education</span>
           <h3>Reading OTC product labels with confidence</h3>
           <p>An overview of what to look for on product labels and why label directions matter.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
         <div class="post-card">
           <span class="post-cat">Household Preparedness</span>
           <h3>Building a practical household preparedness routine</h3>
           <p>Simple habits that help families stay ready for everyday allergy and pain relief needs.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
         <div class="post-card">
           <span class="post-cat">Product Updates</span>
           <h3>What&rsquo;s new from Famora</h3>
           <p>Updates on the Famora product lineup as new essentials become available.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
         <div class="post-card">
           <span class="post-cat">Allergy Relief</span>
           <h3>Indoor allergy triggers around the home</h3>
           <p>Common indoor triggers like dust and pet dander, and how households typically manage them.</p>
-          <div class="post-meta"><span>Coming soon</span><a class="read-more" href="#">Read more &rarr;</a></div>
+          <div class="post-meta"><span>Coming soon</span></div>
         </div>
 
       </div>
-      <p class="coming-soon-note">These are placeholder previews showing the blog layout. Famora will add real articles here over time.</p>
-    </div>
-  </section>
-
-  <!-- DISCLAIMER -->
-  <section style="padding-top:0;">
-    <div class="wrap">
+      <p class="coming-soon-note">Articles coming soon. Famora will continue adding practical OTC education and household preparedness resources over time.</p>
       <div class="safety-box">
         <p>This content is for general educational purposes only and is not medical advice. Always read and follow product label directions.</p>
       </div>
@@ -231,7 +240,7 @@
         <a href="https://www.amazon.com/dp/B0H3WXW44D" target="_blank" rel="noopener">Aspirin</a>
         <a href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Diphenhydramine</a>
         <a href="blog.html">Blog</a>
-        <a href="legal-notice.html">Legal Notice</a>
+        <a href="legal-notice.html">Legal Notices</a>
       </div>
     </div>
     <div class="footer-bottom">

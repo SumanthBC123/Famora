@@ -1,0 +1,50 @@
+<!-- ============================================================
+  SECTION 3 — THE EVERYDAY PROBLEM
+============================================================ -->
+<style>
+  .fm-problem-inner{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+    width:100%; box-sizing:border-box;
+  }
+  .fm-problem-inner > *{ min-width:0; }
+
+  .fm-shelf-card{
+    background:#fff; border:1px solid var(--fm-line, #e2ddd0); border-radius:14px;
+    padding:28px; display:flex; flex-direction:column; gap:14px;
+  }
+  .fm-shelf-row{
+    display:flex; align-items:center; gap:12px; padding:12px 14px;
+    background:var(--fm-neutral); border-radius:9px;
+  }
+  .fm-shelf-row .fm-dot{ width:9px; height:9px; border-radius:50%; background:var(--fm-blue); flex:0 0 auto; }
+  .fm-shelf-row.fm-low .fm-dot{ background:var(--fm-orange); }
+  .fm-shelf-row span:last-child{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:13.5px; color:#5b5f5a;
+  }
+
+  .fm-problem-closing{
+    font-family:'Montserrat',sans-serif; font-weight:700;
+    color:var(--fm-blue-dark); font-size:16px; border-left:3px solid var(--fm-orange);
+    padding-left:16px; margin-top:18px;
+  }
+  @media (max-width:860px){
+    .fm-problem-inner{ grid-template-columns:1fr; }
+  }
+</style>
+
+<section class="fm-section" id="everyday-problem">
+  <div class="fm-container fm-problem-inner">
+    <div class="fm-shelf-card">
+      <div class="fm-shelf-row fm-low"><span class="fm-dot"></span><span>Allergy relief &mdash; running low</span></div>
+      <div class="fm-shelf-row"><span class="fm-dot"></span><span>Pain reliever &mdash; well stocked</span></div>
+      <div class="fm-shelf-row fm-low"><span class="fm-dot"></span><span>Antihistamine &mdash; running low</span></div>
+      <div class="fm-shelf-row"><span class="fm-dot"></span><span>Household essentials &mdash; well stocked</span></div>
+    </div>
+    <div>
+      <p class="fm-eyebrow">The everyday problem</p>
+      <h2 class="fm-h2">Your home medicine cabinet should be ready before you need it.</h2>
+      <p class="fm-body">Most households restock OTC essentials only after symptoms interrupt the day. Small bottles can run out quickly, allergy season can arrive fast, and everyday needs are easier to manage when the basics are already at home.</p>
+      <p class="fm-problem-closing">Famora is built around a simple idea: reliable OTC essentials should be easy to keep stocked.</p>
+    </div>
+  </div>
+</section>

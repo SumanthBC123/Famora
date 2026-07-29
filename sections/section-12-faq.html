@@ -1,0 +1,108 @@
+<!-- ============================================================
+  SECTION 12 — FAQ
+============================================================ -->
+<style>
+  .fm-faq{ background:var(--fm-neutral); }
+  .fm-faq-intro{ max-width:680px; margin:0 0 40px; }
+  .fm-faq-list{ max-width:780px; margin:0; text-align:left; }
+  .fm-faq-item{ border-bottom:1px solid #ece9e2; }
+  .fm-faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 4px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:16px;
+    color:var(--fm-black);
+  }
+  .fm-faq-q .fm-faq-icon{ flex-shrink:0; width:22px; height:22px; position:relative; }
+  .fm-faq-q .fm-faq-icon::before, .fm-faq-q .fm-faq-icon::after{
+    content:""; position:absolute; background:var(--fm-blue); border-radius:2px;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .fm-faq-q .fm-faq-icon::before{ width:14px; height:2px; top:10px; left:4px; }
+  .fm-faq-q .fm-faq-icon::after{ width:2px; height:14px; top:4px; left:10px; }
+  .fm-faq-item.fm-open .fm-faq-icon::after{ transform:rotate(90deg); opacity:0; }
+  .fm-faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+  .fm-faq-a p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.65; padding:0 4px 20px; margin:0; text-align:left; }
+</style>
+
+<section class="fm-section fm-faq" id="faq">
+  <div class="fm-container">
+    <div class="fm-faq-intro">
+      <p class="fm-eyebrow">FAQ</p>
+      <h2 class="fm-h2">Common questions</h2>
+    </div>
+    <div class="fm-faq-list" id="fm-faq-list">
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-1" aria-expanded="false" aria-controls="fm-faq-a-1"><span>Where can I buy Famora products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-1" role="region" aria-labelledby="fm-faq-q-1"><p>Famora products are available on Amazon. Use the buttons on this page to visit the Famora Storefront or the individual product listings.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-2" aria-expanded="false" aria-controls="fm-faq-a-2"><span>What products does Famora currently offer?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-2" role="region" aria-labelledby="fm-faq-q-2"><p>Famora&rsquo;s initial lineup includes Allergy Relief 25mg Diphenhydramine HCl, 24-Hour Allergy Relief Cetirizine HCl 10mg, and Low Dose Aspirin 81mg Enteric Coated Tablets.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-3" aria-expanded="false" aria-controls="fm-faq-a-3"><span>Why does Famora focus on high-count bottles?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-3" role="region" aria-labelledby="fm-faq-q-3"><p>High-count OTC products can be practical for households that want to stay stocked, reduce frequent restocking, and get smart everyday value from each bottle.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-4" aria-expanded="false" aria-controls="fm-faq-a-4"><span>Are Famora products for families?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-4" role="region" aria-labelledby="fm-faq-q-4"><p>Famora is designed for prepared households. Always review each product label for directions, warnings, age guidance, and whether the product is appropriate for your situation.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-5" aria-expanded="false" aria-controls="fm-faq-a-5"><span>How should I use Famora products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-5" role="region" aria-labelledby="fm-faq-q-5"><p>Always read and follow the product label directions. If you have questions about whether a product is right for you, consult a healthcare professional.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-6" aria-expanded="false" aria-controls="fm-faq-a-6"><span>How does Famora describe its products?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-6" role="region" aria-labelledby="fm-faq-q-6"><p>Famora uses product information from official packaging, product labels, and Amazon listings so customers can understand each product clearly.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-7" aria-expanded="false" aria-controls="fm-faq-a-7"><span>Does Famora sell directly from this website?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-7" role="region" aria-labelledby="fm-faq-q-7"><p>For the first version of the landing page, the primary purchase path is Amazon. Visitors are directed to the Famora Amazon Storefront or product-specific Amazon listings.</p></div>
+      </div>
+
+      <div class="fm-faq-item">
+        <button class="fm-faq-q" id="fm-faq-q-8" aria-expanded="false" aria-controls="fm-faq-a-8"><span>Does Famora offer customer support?</span><span class="fm-faq-icon" aria-hidden="true"></span></button>
+        <div class="fm-faq-a" id="fm-faq-a-8" role="region" aria-labelledby="fm-faq-q-8"><p>For product-specific questions, please review the Amazon listing and product label information. A support contact can be added later if Famora provides one.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var list = document.getElementById('fm-faq-list');
+  if (!list || list.getAttribute('data-fm-bound')) return;
+  list.setAttribute('data-fm-bound', 'true');
+  list.querySelectorAll('.fm-faq-item').forEach(function(item){
+    var btn = item.querySelector('.fm-faq-q');
+    var answer = item.querySelector('.fm-faq-a');
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('fm-open');
+      list.querySelectorAll('.fm-faq-item.fm-open').forEach(function(open){
+        if (open !== item){
+          open.classList.remove('fm-open');
+          open.querySelector('.fm-faq-a').style.maxHeight = null;
+          open.querySelector('.fm-faq-q').setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isOpen){
+        item.classList.remove('fm-open');
+        answer.style.maxHeight = null;
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('fm-open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>

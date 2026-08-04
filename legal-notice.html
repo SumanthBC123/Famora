@@ -149,3 +149,62 @@
     <a href="blog.html">Blog</a>
   </div>
 </footer>
+
+<script>
+(function(){
+  if (window.__fmAnalyticsBound) return;
+  window.__fmAnalyticsBound = true;
+
+  var PRODUCTS = {
+    diphenhydramine: { event: 'diphenhydramine_click', product_name: 'Diphenhydramine', asin: 'B0GWS1F7XH' },
+    cetirizine:      { event: 'cetirizine_click',      product_name: 'Cetirizine',      asin: 'B0GX2DV5KT' },
+    aspirin:         { event: 'aspirin_click',         product_name: 'Aspirin',         asin: 'B0H3WXW44D' }
+  };
+
+  function fireGtag(name, params){
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
+
+  document.querySelectorAll('[data-ga]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var key = el.getAttribute('data-ga');
+      var base = {
+        cta_text: el.textContent.trim(),
+        cta_location: el.getAttribute('data-cta-location') || '',
+        page_location: window.location.href
+      };
+      if (key === 'storefront'){
+        fireGtag('amazon_storefront_click', Object.assign({}, base, { destination_url: el.href }));
+      } else if (key === 'product_section'){
+        fireGtag('product_section_click', base);
+      } else if (PRODUCTS[key]){
+        var p = PRODUCTS[key];
+        fireGtag(p.event, Object.assign({}, base, {
+          destination_url: el.href,
+          product_name: p.product_name,
+          asin: p.asin
+        }));
+      }
+    });
+  });
+
+  var scroll75Fired = false;
+  function checkScroll75(){
+    if (scroll75Fired) return;
+    var doc = document.documentElement;
+    var scrollableHeight = doc.scrollHeight - window.innerHeight;
+    if (scrollableHeight <= 0) return;
+    var pct = (window.scrollY / scrollableHeight) * 100;
+    if (pct >= 75){
+      scroll75Fired = true;
+      fireGtag('scroll_75', {
+        percent_scrolled: 75,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+      window.removeEventListener('scroll', checkScroll75);
+    }
+  }
+  window.addEventListener('scroll', checkScroll75, { passive: true });
+})();
+</script>

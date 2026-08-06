@@ -121,6 +121,21 @@
   .safety-box h3{margin-bottom:8px; font-size:1.05rem;}
   .safety-box p{margin:0; font-size:0.94rem;}
 
+  /* EMAIL SIGNUP */
+  .signup-box{background:var(--blue-tint); border:1px solid var(--line); border-radius:20px; padding:44px; display:flex; flex-wrap:wrap; gap:32px; align-items:center; justify-content:space-between;}
+  .signup-copy{flex:1 1 320px; max-width:480px;}
+  .signup-copy h2{margin-bottom:8px; font-size:1.5rem;}
+  .signup-copy p{margin:0; max-width:52ch;}
+  .signup-form{flex:1 1 360px; max-width:420px; width:100%;}
+  .signup-fields{display:flex; flex-direction:column; gap:10px;}
+  .signup-input{font-family:var(--body); font-size:0.95rem; padding:12px 14px; border:1.5px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); width:100%; box-sizing:border-box;}
+  .signup-input:focus{outline:none; border-color:var(--blue);}
+  .signup-btn{width:100%; justify-content:center;}
+  .signup-note{font-size:0.76rem; color:var(--ink-soft); margin:10px 0 0;}
+  .signup-success{font-family:var(--display); font-weight:700; color:var(--blue-deep); margin-top:10px;}
+  .signup-honeypot{position:absolute; left:-9999px; top:-9999px;}
+  @media (max-width:760px){ .signup-box{flex-direction:column; padding:32px 24px;} }
+
   /* FINAL CTA */
   .final-box{background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%); border-radius:26px; padding:70px 44px; text-align:center; color:#fff;}
   .final-box h2{color:#fff; max-width:22ch; margin:0 auto 14px;}
@@ -904,6 +919,29 @@
     </div>
   </section>
 
+  <!-- EMAIL SIGNUP -->
+  <section id="signup">
+    <div class="wrap">
+      <div class="signup-box">
+        <div class="signup-copy">
+          <h2>Get Famora updates and Amazon offers</h2>
+          <p>Sign up for product updates, household OTC tips, and future Amazon offers from Famora.</p>
+        </div>
+        <form name="email-signup-home" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="signup-form" id="signup-form-home">
+          <input type="hidden" name="form-name" value="email-signup-home" />
+          <p class="signup-honeypot"><label>Don&rsquo;t fill this out: <input name="bot-field" /></label></p>
+          <div class="signup-fields">
+            <input type="text" name="first_name" placeholder="First name (optional)" class="signup-input" />
+            <input type="email" name="email" placeholder="Email address" required class="signup-input" />
+            <button type="submit" class="btn btn-primary signup-btn">Sign Up</button>
+          </div>
+          <p class="signup-note">By signing up, you agree to receive emails from Famora. You can unsubscribe at any time.</p>
+          <p class="signup-success" role="status" aria-live="polite" hidden>Thanks for signing up! Keep an eye on your inbox.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section style="padding-bottom:110px;">
     <div class="wrap">
@@ -1048,5 +1086,45 @@
     }
   }
   window.addEventListener('scroll', checkScroll75, { passive: true });
+})();
+</script>
+
+<script>
+(function(){
+  function bindSignupForm(formId, gaEventName){
+    var form = document.getElementById(formId);
+    if (!form || form.getAttribute('data-bound')) return;
+    form.setAttribute('data-bound', 'true');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var formData = new FormData(form);
+      var body = new URLSearchParams(formData).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).then(function(){
+        var fields = form.querySelector('.signup-fields');
+        var note = form.querySelector('.signup-note');
+        var success = form.querySelector('.signup-success');
+        if (fields) fields.style.display = 'none';
+        if (note) note.style.display = 'none';
+        if (success) success.hidden = false;
+        if (typeof gtag === 'function'){
+          gtag('event', gaEventName, {
+            form_name: formId,
+            page_location: window.location.href
+          });
+        }
+      }).catch(function(){
+        var success = form.querySelector('.signup-success');
+        if (success){
+          success.hidden = false;
+          success.textContent = 'Something went wrong. Please try again.';
+        }
+      });
+    });
+  }
+  bindSignupForm('signup-form-home', 'email_signup_submit_Home');
 })();
 </script>

@@ -1,5 +1,23 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
 <title>Blog — Famora</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Practical, easy-to-follow guidance on choosing, comparing, and stocking everyday OTC essentials for allergy relief and a prepared home medicine cabinet.">
+<link rel="canonical" href="https://famora.us/blog">
+<meta property="og:title" content="Blog — Famora">
+<meta property="og:description" content="Practical, easy-to-follow guidance on choosing, comparing, and stocking everyday OTC essentials for allergy relief and a prepared home medicine cabinet.">
+<meta property="og:url" content="https://famora.us/blog">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://famora.us/assets/hero-lifestyle.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Famora">
+<meta name="twitter:description" content="Practical, easy-to-follow guidance on choosing, comparing, and stocking everyday OTC essentials for allergy relief and a prepared home medicine cabinet.">
+<meta name="twitter:image" content="https://famora.us/assets/hero-lifestyle.jpg">
+<link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPF7DVJCQ8"></script>
 <script>
@@ -80,6 +98,7 @@
   }
 
   /* BLOG LISTING GRID */
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
   .blog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
   .post-card{
     background:var(--white); border:1px solid var(--line); border-radius:16px; padding:24px;
@@ -142,10 +161,17 @@
     .wrap{padding:0 20px;}
   }
 </style>
+</head>
+<body>
 
 <header class="site">
   <div class="wrap header-row">
-    <a class="logo" href="index.html"><img src="assets/famora-logo.png" alt="Famora"></a>
+    <a class="logo" href="index.html">
+      <picture>
+        <source srcset="assets/famora-logo.webp" type="image/webp">
+        <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326">
+      </picture>
+    </a>
     <nav class="anchors">
       <a href="index.html#products" data-ga="product_section" data-cta-location="nav">Products</a>
       <a href="index.html#why-famora">Why Famora</a>
@@ -171,7 +197,10 @@
           <p>Famora&rsquo;s educational content is designed to help households better understand everyday OTC essentials, allergy triggers, product restocking, and practical home preparedness. Always read and follow product label directions, and consult a healthcare professional for medical questions.</p>
         </div>
         <div class="blog-hero-visual">
-          <img src="assets/hero-lifestyle.png" alt="Famora OTC essentials in a home setting">
+          <picture>
+            <source srcset="assets/hero-lifestyle.webp" type="image/webp">
+            <img src="assets/hero-lifestyle.jpg" alt="Famora OTC essentials in a home setting" width="1200" height="800">
+          </picture>
         </div>
       </div>
       <div class="topics-label">Topics we&rsquo;ll cover:</div>
@@ -188,6 +217,7 @@
   <!-- BLOG LISTING -->
   <section>
     <div class="wrap">
+      <h2 class="sr-only">Latest Articles</h2>
       <div class="blog-grid">
 
         <div class="post-card">
@@ -265,7 +295,12 @@
 <footer class="site">
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-logo"><img src="assets/famora-logo.png" alt="Famora"></div>
+      <div class="footer-logo">
+        <picture>
+          <source srcset="assets/famora-logo.webp" type="image/webp">
+          <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326" loading="lazy">
+        </picture>
+      </div>
       <div class="footer-links">
         <a href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener" data-ga="storefront" data-cta-location="footer">Amazon Storefront</a>
         <a href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener" data-ga="cetirizine" data-cta-location="footer">Cetirizine</a>
@@ -380,3 +415,5 @@
   bindSignupForm('signup-form-blog', 'email_signup_submit_Blog');
 })();
 </script>
+</body>
+</html>

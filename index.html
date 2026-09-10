@@ -1,5 +1,23 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
 <title>Famora — Everyday OTC Essentials</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Famora makes everyday OTC essentials simple to trust. Shop Diphenhydramine allergy relief, Cetirizine, and Low Dose Aspirin in high-count bottles on Amazon.">
+<link rel="canonical" href="https://famora.us/">
+<meta property="og:title" content="Famora — Everyday OTC Essentials">
+<meta property="og:description" content="Famora makes everyday OTC essentials simple to trust. Shop Diphenhydramine allergy relief, Cetirizine, and Low Dose Aspirin in high-count bottles on Amazon.">
+<meta property="og:url" content="https://famora.us/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://famora.us/assets/hero-lifestyle.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Famora — Everyday OTC Essentials">
+<meta name="twitter:description" content="Famora makes everyday OTC essentials simple to trust. Shop Diphenhydramine allergy relief, Cetirizine, and Low Dose Aspirin in high-count bottles on Amazon.">
+<meta name="twitter:image" content="https://famora.us/assets/hero-lifestyle.jpg">
+<link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPF7DVJCQ8"></script>
 <script>
@@ -163,10 +181,17 @@
     .wrap{padding:0 20px;}
   }
 </style>
+</head>
+<body>
 
 <header class="site" id="siteHeader">
   <div class="wrap header-row">
-    <a class="logo" href="#top"><img src="assets/famora-logo.png" alt="Famora"></a>
+    <a class="logo" href="#top">
+      <picture>
+        <source srcset="assets/famora-logo.webp" type="image/webp">
+        <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326">
+      </picture>
+    </a>
     <nav class="anchors" id="siteNav">
       <a href="#products" data-ga="product_section" data-cta-location="nav">Products</a>
       <a href="#why-famora">Why Famora</a>
@@ -238,7 +263,10 @@
       </div>
       <div class="fm-hero-right">
         <div class="fm-hero-photo reveal">
-          <img src="assets/hero-lifestyle.png" alt="Famora Allergy Relief bottle in a home medicine cabinet">
+          <picture>
+            <source srcset="assets/hero-lifestyle.webp" type="image/webp">
+            <img src="assets/hero-lifestyle.jpg" alt="Famora Allergy Relief bottle in a home medicine cabinet" width="1200" height="800">
+          </picture>
         </div>
         <div class="fm-hero-shelf reveal">
           <p class="fm-shelf-label">Famora essentials</p>
@@ -422,8 +450,9 @@
 
     .fm-product-img{
       width:100%; aspect-ratio:1/1; border-radius:14px; margin-bottom:20px; overflow:hidden;
-      background-color:#fff; background-size:contain; background-repeat:no-repeat; background-position:center;
+      background-color:#fff;
     }
+    .fm-product-img img{ width:100%; height:100%; object-fit:contain; display:block; }
     .fm-product-count{
       display:inline-block; font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px;
       letter-spacing:.06em; text-transform:uppercase; color:var(--fm-blue); background:rgba(55,134,198,.1);
@@ -447,7 +476,12 @@
       <div class="fm-products-grid">
 
         <div class="fm-product-card fm-blue reveal">
-          <div class="fm-product-img" role="img" aria-label="Famora Allergy Relief 25mg Diphenhydramine HCl" style="background-image:url('assets/diphenhydramine.png');"></div>
+          <div class="fm-product-img">
+            <picture>
+              <source srcset="assets/diphenhydramine.webp" type="image/webp">
+              <img src="assets/diphenhydramine.jpg" alt="Famora Allergy Relief 25mg Diphenhydramine HCl bottle" width="800" height="800" loading="lazy">
+            </picture>
+          </div>
           <span class="fm-product-count">650 count</span>
           <h3>Allergy Relief 25mg Diphenhydramine HCl</h3>
           <p>OTC antihistamine caplets for sneezing, itchy/watery eyes, and runny nose.</p>
@@ -455,7 +489,12 @@
         </div>
 
         <div class="fm-product-card reveal">
-          <div class="fm-product-img" role="img" aria-label="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg" style="background-image:url('assets/cetirizine.jpg');"></div>
+          <div class="fm-product-img">
+            <picture>
+              <source srcset="assets/cetirizine.webp" type="image/webp">
+              <img src="assets/cetirizine.jpg" alt="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg bottle" width="800" height="800" loading="lazy">
+            </picture>
+          </div>
           <span class="fm-product-count">365 tablets</span>
           <h3>24-Hour Allergy Relief Cetirizine HCl 10mg</h3>
           <p>24-hour allergy relief for adults and children 6+.</p>
@@ -463,7 +502,12 @@
         </div>
 
         <div class="fm-product-card fm-blue reveal">
-          <div class="fm-product-img" role="img" aria-label="Famora Low Dose Aspirin 81mg Enteric Coated Tablets" style="background-image:url('assets/aspirin.jpg');"></div>
+          <div class="fm-product-img">
+            <picture>
+              <source srcset="assets/aspirin.webp" type="image/webp">
+              <img src="assets/aspirin.jpg" alt="Famora Low Dose Aspirin 81mg Enteric Coated Tablets bottle" width="800" height="800" loading="lazy">
+            </picture>
+          </div>
           <span class="fm-product-count">500 count</span>
           <h3>Low Dose Aspirin 81mg Enteric Coated Tablets</h3>
           <p>Adult low dose aspirin tablets in a practical 500-count format. Always use as directed.</p>
@@ -489,9 +533,10 @@
     .fm-dd-row.fm-dd-reverse .fm-dd-visual{ order:2; }
     .fm-dd-visual{
       width:100%; max-width:380px; aspect-ratio:1/1; border-radius:18px; overflow:hidden;
-      background-color:#fff; background-size:contain; background-repeat:no-repeat; background-position:center;
+      background-color:#fff;
       border:1.5px solid transparent; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
+    .fm-dd-visual img{ width:100%; height:100%; object-fit:contain; display:block; }
     .fm-dd-row:hover .fm-dd-visual{
       transform:scale(1.035); border-color:var(--fm-blue); box-shadow:0 16px 30px -20px rgba(31,77,115,.35);
     }
@@ -534,7 +579,12 @@
 
       <!-- Product 1: Diphenhydramine -->
       <div class="fm-dd-row reveal">
-        <div class="fm-dd-visual" role="img" aria-label="Famora Allergy Relief 25mg Diphenhydramine HCl" style="background-image:url('assets/diphenhydramine.png');"></div>
+        <div class="fm-dd-visual">
+          <picture>
+            <source srcset="assets/diphenhydramine.webp" type="image/webp">
+            <img src="assets/diphenhydramine.jpg" alt="Famora Allergy Relief 25mg Diphenhydramine HCl bottle" width="800" height="800" loading="lazy">
+          </picture>
+        </div>
         <div>
           <span class="fm-dd-count">650 count</span>
           <h3>Allergy relief support in a high-count bottle.</h3>
@@ -551,7 +601,12 @@
 
       <!-- Product 2: Cetirizine -->
       <div class="fm-dd-row fm-dd-reverse reveal">
-        <div class="fm-dd-visual" role="img" aria-label="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg" style="background-image:url('assets/cetirizine.jpg');"></div>
+        <div class="fm-dd-visual">
+          <picture>
+            <source srcset="assets/cetirizine.webp" type="image/webp">
+            <img src="assets/cetirizine.jpg" alt="Famora 24-Hour Allergy Relief Cetirizine HCl 10mg bottle" width="800" height="800" loading="lazy">
+          </picture>
+        </div>
         <div>
           <span class="fm-dd-count">365 tablets</span>
           <h3>Daily allergy relief support for prepared households.</h3>
@@ -568,7 +623,12 @@
 
       <!-- Product 3: Aspirin -->
       <div class="fm-dd-row reveal">
-        <div class="fm-dd-visual" role="img" aria-label="Famora Low Dose Aspirin 81mg Enteric Coated Tablets" style="background-image:url('assets/aspirin.jpg');"></div>
+        <div class="fm-dd-visual">
+          <picture>
+            <source srcset="assets/aspirin.webp" type="image/webp">
+            <img src="assets/aspirin.jpg" alt="Famora Low Dose Aspirin 81mg Enteric Coated Tablets bottle" width="800" height="800" loading="lazy">
+          </picture>
+        </div>
         <div>
           <span class="fm-dd-count">500 count</span>
           <h3>Low dose aspirin in a practical high-count format.</h3>
@@ -795,7 +855,10 @@
         <div class="closing-line">Famora keeps household care simple: useful products, practical quantities, and straightforward value.</div>
       </div>
       <div class="about-mark reveal">
-        <img src="assets/famora-logo.png" alt="Famora" style="width:100%; max-width:320px; height:auto; display:block;">
+        <picture>
+          <source srcset="assets/famora-logo.webp" type="image/webp">
+          <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326" loading="lazy" style="width:100%; max-width:320px; height:auto; display:block;">
+        </picture>
       </div>
     </div>
   </section>
@@ -962,7 +1025,12 @@
 <footer class="site">
   <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-logo"><img src="assets/famora-logo.png" alt="Famora"></div>
+      <div class="footer-logo">
+        <picture>
+          <source srcset="assets/famora-logo.webp" type="image/webp">
+          <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326" loading="lazy">
+        </picture>
+      </div>
       <div class="footer-links">
         <a href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener" data-ga="storefront" data-cta-location="footer">Amazon Storefront</a>
         <a href="https://www.amazon.com/dp/B0GX2DV5KT" target="_blank" rel="noopener" data-ga="cetirizine" data-cta-location="footer">Cetirizine</a>
@@ -1128,3 +1196,5 @@
   bindSignupForm('signup-form-home', 'email_signup_submit_Home');
 })();
 </script>
+</body>
+</html>

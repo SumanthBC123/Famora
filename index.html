@@ -18,6 +18,23 @@
 <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Famora",
+  "url": "https://famora.us/",
+  "logo": "https://famora.us/assets/famora-logo.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Famora",
+  "url": "https://famora.us/"
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPF7DVJCQ8"></script>
 <script>
@@ -179,6 +196,7 @@
     section{padding:56px 0;}
     .final-box{padding:48px 24px;}
     .wrap{padding:0 20px;}
+    .fm-btn, .btn{ white-space:normal; text-align:center; max-width:100%; }
   }
 </style>
 </head>
@@ -1171,18 +1189,26 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body
-      }).then(function(){
-        var fields = form.querySelector('.signup-fields');
-        var note = form.querySelector('.signup-note');
+      }).then(function(response){
         var success = form.querySelector('.signup-success');
-        if (fields) fields.style.display = 'none';
-        if (note) note.style.display = 'none';
-        if (success) success.hidden = false;
-        if (typeof gtag === 'function'){
-          gtag('event', gaEventName, {
-            form_name: formId,
-            page_location: window.location.href
-          });
+        if (response.ok){
+          var fields = form.querySelector('.signup-fields');
+          var note = form.querySelector('.signup-note');
+          if (fields) fields.style.display = 'none';
+          if (note) note.style.display = 'none';
+          if (success){
+            success.hidden = false;
+            success.textContent = 'Thanks for signing up! Keep an eye on your inbox.';
+          }
+          if (typeof gtag === 'function'){
+            gtag('event', gaEventName, {
+              form_name: formId,
+              page_location: window.location.href
+            });
+          }
+        } else if (success){
+          success.hidden = false;
+          success.textContent = 'Something went wrong. Please try again.';
         }
       }).catch(function(){
         var success = form.querySelector('.signup-success');

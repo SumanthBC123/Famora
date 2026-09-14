@@ -18,6 +18,35 @@
 <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="assets/favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why High-Count OTC Medicine Belongs in a Prepared Home Medicine Cabinet",
+  "description": "High-count OTC medicine helps prepared households avoid mid-symptom restocking. See why count matters and how to compare essentials before you buy.",
+  "image": "https://famora.us/assets/high-count-otc-checklist.jpg",
+  "author": { "@type": "Organization", "name": "Famora" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Famora",
+    "logo": { "@type": "ImageObject", "url": "https://famora.us/assets/famora-logo.png" }
+  },
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-09-14",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://famora.us/high-count-otc-essentials-prepared-households" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://famora.us/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://famora.us/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Why High-Count OTC Medicine Belongs in a Prepared Home Medicine Cabinet", "item": "https://famora.us/high-count-otc-essentials-prepared-households" }
+  ]
+}
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPF7DVJCQ8"></script>
 <script>
@@ -67,7 +96,7 @@
 
   /* HEADER (matches blog.html) */
   header.site{position:sticky; top:0; z-index:50; background:rgba(253,252,250,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
-  .header-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px;}
+  .header-row{position:relative; display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px;}
   .logo{display:flex; align-items:center; gap:2px; text-decoration:none;}
   .logo img{height:48px; width:auto; display:block;}
   nav.anchors{display:flex; gap:28px; align-items:center;}
@@ -75,7 +104,14 @@
   nav.anchors a:hover{color:var(--blue-deep);}
   nav.anchors a.current{color:var(--blue-deep);}
   .header-cta{display:flex; align-items:center; gap:14px;}
-  @media (max-width:860px){ nav.anchors{display:none;} }
+  .nav-toggle{display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer; padding:0;}
+  .nav-toggle span{width:100%; height:2px; background:var(--ink); border-radius:2px;}
+  @media (max-width:860px){
+    .nav-toggle{display:flex;}
+    nav.anchors{position:absolute; top:100%; left:0; right:0; background:var(--white); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:0; max-height:0; overflow:hidden; transition:max-height .3s ease; box-shadow:0 12px 20px -16px rgba(23,26,29,.3);}
+    nav.anchors.open{max-height:280px;}
+    nav.anchors a{padding:14px 28px; border-bottom:1px solid var(--line); min-height:44px; display:flex; align-items:center; box-sizing:border-box;}
+  }
 
   /* ARTICLE HERO */
   .article-hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
@@ -155,7 +191,7 @@
         <img src="assets/famora-logo.png" alt="Famora" width="1200" height="326">
       </picture>
     </a>
-    <nav class="anchors">
+    <nav class="anchors" id="siteNav">
       <a href="index.html#products" data-ga="product_section" data-cta-location="nav">Products</a>
       <a href="index.html#why-famora">Why Famora</a>
       <a href="blog.html" class="current">Blog</a>
@@ -163,6 +199,9 @@
     </nav>
     <div class="header-cta">
       <a class="btn btn-primary" href="https://www.amazon.com/stores/Famora/page/81160919-0D2F-41D2-94BA-65BB7147068E?lp_asin=B0GWS1F7XH&ref_=ast_bln" target="_blank" rel="noopener" data-ga="storefront" data-cta-location="header">Shop Amazon</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
@@ -447,6 +486,26 @@
     }
   }
   window.addEventListener('scroll', checkScroll75, { passive: true });
+})();
+</script>
+<script>
+(function(){
+  var navToggle = document.getElementById('navToggle');
+  var siteNav = document.getElementById('siteNav');
+  if (navToggle && siteNav){
+    navToggle.addEventListener('click', function(){
+      var isOpen = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      siteNav.style.maxHeight = isOpen ? siteNav.scrollHeight + 'px' : '0px';
+    });
+    siteNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        siteNav.classList.remove('open');
+        siteNav.style.maxHeight = '0px';
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 })();
 </script>
 </body>

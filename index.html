@@ -686,14 +686,20 @@
     }
     .fm-benefit p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.6; margin:0; }
 
-    .fm-big-numbers{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .fm-big-numbers{ display:grid; grid-template-columns:1fr 1fr; gap:16px; width:100%; box-sizing:border-box; }
     .fm-bn-card{
-      background:var(--fm-white); border:1px solid #ece9e2; border-radius:16px; padding:26px; text-align:center;
+      min-width:0; background:var(--fm-white); border:1px solid #ece9e2; border-radius:16px; padding:26px; text-align:center;
+      box-sizing:border-box;
     }
     .fm-bn-card .fm-n{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:2.3rem; color:var(--fm-blue); }
     .fm-bn-card .fm-l{
       font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase;
-      letter-spacing:.04em; color:#5a5a5a; margin-top:6px;
+      letter-spacing:.04em; color:#5a5a5a; margin-top:6px; overflow-wrap:break-word; word-break:break-word;
+    }
+    @media (max-width:360px){
+      .fm-big-numbers{ gap:10px; }
+      .fm-bn-card{ padding:16px 10px; }
+      .fm-bn-card .fm-n{ font-size:1.8rem; }
     }
     @media (max-width:900px){ .fm-value-grid{ grid-template-columns:1fr; } }
   </style>

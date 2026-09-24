@@ -111,14 +111,15 @@
   nav.anchors a:hover{color:var(--blue-deep);}
   nav.anchors a:hover::after{right:0;}
   .header-cta{display:flex; align-items:center; gap:14px;}
-  .nav-toggle{display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer;}
-  .nav-toggle span{width:100%; height:2px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease;}
+  .nav-toggle{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; flex-shrink:0; background:none; border:none; cursor:pointer; box-sizing:border-box;}
+  .nav-toggle span{width:22px; height:2px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease;}
   @media (max-width:860px){
     .nav-toggle{display:flex;}
     nav.anchors{position:absolute; top:100%; left:0; right:0; background:var(--white); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:0; max-height:0; overflow:hidden; transition:max-height .3s ease; box-shadow:0 12px 20px -16px rgba(23,26,29,.3);}
     nav.anchors.open{max-height:240px;}
     nav.anchors a{padding:14px 28px; border-bottom:1px solid var(--line);}
     nav.anchors a::after{display:none;}
+    .header-cta .btn{padding:8px 14px; font-size:0.78rem; white-space:nowrap;}
   }
 
   /* fm- FOUNDATION — shared base classes for the sections below (not included in the pasted section code, defined here so those sections render correctly) */
@@ -197,6 +198,7 @@
     .final-box{padding:48px 24px;}
     .wrap{padding:0 20px;}
     .fm-btn, .btn{ white-space:normal; text-align:center; max-width:100%; }
+    .footer-links a{ padding:8px 0; }
   }
 </style>
 </head>

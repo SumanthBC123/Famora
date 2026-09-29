@@ -108,10 +108,11 @@
   .nav-dropdown-trigger:hover{color:var(--blue-deep);}
   .nav-dropdown-caret{width:7px; height:7px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); transition:transform .15s ease;}
   .nav-item-dropdown.open .nav-dropdown-caret{transform:rotate(-135deg);}
-  .nav-dropdown-menu{display:none; position:absolute; top:calc(100% + 14px); left:0; min-width:230px; background:var(--white); border:1px solid var(--line); border-radius:12px; box-shadow:0 16px 30px -18px rgba(23,26,29,.35); padding:8px; z-index:60;}
+  .nav-dropdown-menu{display:none; position:absolute; top:100%; padding-top:14px; left:0; min-width:230px; z-index:60;}
   .nav-item-dropdown:hover .nav-dropdown-menu, .nav-item-dropdown.open .nav-dropdown-menu{display:block;}
-  .nav-dropdown-menu a{display:block; padding:10px 12px; border-radius:8px; text-decoration:none;}
-  .nav-dropdown-menu a:hover{background:var(--blue-tint);}
+  .nav-dropdown-menu-inner{background:var(--white); border:1px solid var(--line); border-radius:12px; box-shadow:0 16px 30px -18px rgba(23,26,29,.35); padding:8px;}
+  .nav-dropdown-menu-inner a{display:block; padding:10px 12px; border-radius:8px; text-decoration:none;}
+  .nav-dropdown-menu-inner a:hover{background:var(--blue-tint);}
   .nav-dropdown-item-title{display:block; font-family:var(--display); font-weight:700; font-size:0.88rem; color:var(--ink);}
   .nav-dropdown-item-sub{display:block; font-size:0.78rem; color:var(--ink-soft); margin-top:2px;}
   .header-cta{display:flex; align-items:center; gap:14px;}
@@ -127,8 +128,9 @@
     .nav-dropdown-trigger{width:100%; justify-content:space-between; padding:14px 28px; border-bottom:1px solid var(--line); min-height:44px; box-sizing:border-box;}
     .nav-item-dropdown:hover .nav-dropdown-menu{display:none;}
     .nav-item-dropdown.open .nav-dropdown-menu{display:block;}
-    .nav-dropdown-menu{position:static; border:none; box-shadow:none; border-radius:0; padding:0; background:var(--blue-tint);}
-    .nav-dropdown-menu a{padding:12px 40px; min-height:44px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--line);}
+    .nav-dropdown-menu{position:static; padding-top:0;}
+    .nav-dropdown-menu-inner{background:var(--blue-tint); padding:0;}
+    .nav-dropdown-menu-inner a{padding:12px 40px; min-height:44px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--line);}
   }
 
   /* ARTICLE HERO */
@@ -217,10 +219,12 @@
           Products<span class="nav-dropdown-caret" aria-hidden="true"></span>
         </button>
         <div class="nav-dropdown-menu">
-          <a href="products/diphenhydramine-hcl-25mg-650-count.html">
-            <span class="nav-dropdown-item-title">Allergy Relief 25 mg</span>
-            <span class="nav-dropdown-item-sub">Diphenhydramine HCl | 650 Caplets</span>
-          </a>
+          <div class="nav-dropdown-menu-inner">
+            <a href="products/diphenhydramine-hcl-25mg-650-count.html">
+              <span class="nav-dropdown-item-title">Allergy Relief 25 mg</span>
+              <span class="nav-dropdown-item-sub">Diphenhydramine HCl | 650 Caplets</span>
+            </a>
+          </div>
         </div>
       </div>
       <a href="index.html#why-famora">Why Famora</a>

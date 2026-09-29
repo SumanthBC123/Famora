@@ -121,10 +121,6 @@
   .content-image{border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px;}
   .content-image img{width:100%; height:auto; display:block;}
   .content-image-caption{font-size:0.85rem; font-style:italic; color:var(--ink-soft); margin:0 0 8px; text-align:center;}
-  .image-pending{
-    border:1.5px dashed var(--line); border-radius:16px; padding:40px 24px; text-align:center;
-    color:var(--ink-soft); font-size:0.88rem; background:var(--white); margin:28px 0 12px;
-  }
   section.alt-bg{background:var(--neutral);}
 
   /* FAQ (matches article accordion) */
@@ -268,8 +264,11 @@
       <h2>Drug Facts</h2>
       <p>Read the complete Drug Facts label before using this product. Use only as directed on the approved Famora label.</p>
       <button type="button" class="btn btn-outline" id="drugFactsBtn">View Full Drug Facts</button>
-      <div class="image-pending">
-        Drug Facts label image pending &mdash; awaiting the final approved label file from Famora to place here.
+      <div class="content-image" style="max-width:420px; cursor:pointer;" id="drugFactsThumb">
+        <picture>
+          <source srcset="../assets/diphenhydramine-drug-facts-label.webp" type="image/webp">
+          <img src="../assets/diphenhydramine-drug-facts-label.png" alt="Full Drug Facts label for Famora Diphenhydramine HCl 25 mg allergy relief caplets." width="900" height="900" loading="lazy">
+        </picture>
       </div>
     </div>
   </section>
@@ -280,8 +279,11 @@
       <h2>A simple way to compare OTC allergy medicine.</h2>
       <p>A product name alone does not tell the whole story. Before buying, review the active ingredient and strength, the symptoms listed under Uses, the count, the directions and warnings, and the current price. Reading the complete label helps households make a more informed choice.</p>
       <p><a href="../how-to-choose-the-right-otc-medicine-on-amazon.html">Learn how to choose the right OTC medicine on Amazon</a></p>
-      <div class="image-pending">
-        Checklist graphic pending &mdash; awaiting the 5-icon comparison graphic (active ingredient, strength, uses, count, warnings) to place here.
+      <div class="content-image">
+        <picture>
+          <source srcset="../assets/diphenhydramine-buying-checklist.webp" type="image/webp">
+          <img src="../assets/diphenhydramine-buying-checklist.jpg" alt="Checklist for comparing active ingredient, strength, uses, count and warnings on OTC allergy medicine." width="1520" height="855" loading="lazy">
+        </picture>
       </div>
     </div>
   </section>
@@ -371,7 +373,7 @@
 
 <div class="lightbox" id="drugFactsLightbox">
   <button class="lightbox-close" id="drugFactsLightboxClose" aria-label="Close">&times;</button>
-  <img src="../assets/diphenhydramine-drug-facts-label.jpg" alt="Full Drug Facts label for Famora Diphenhydramine HCl 25 mg allergy relief caplets.">
+  <img src="../assets/diphenhydramine-drug-facts-label.png" alt="Full Drug Facts label for Famora Diphenhydramine HCl 25 mg allergy relief caplets.">
 </div>
 
 <script>
@@ -422,10 +424,14 @@
   }
 
   var drugFactsBtn = document.getElementById('drugFactsBtn');
+  var drugFactsThumb = document.getElementById('drugFactsThumb');
   var lightbox = document.getElementById('drugFactsLightbox');
   var lightboxClose = document.getElementById('drugFactsLightboxClose');
   if (drugFactsBtn && lightbox){
     drugFactsBtn.addEventListener('click', function(){ lightbox.classList.add('open'); });
+    if (drugFactsThumb){
+      drugFactsThumb.addEventListener('click', function(){ lightbox.classList.add('open'); });
+    }
     lightboxClose.addEventListener('click', function(){ lightbox.classList.remove('open'); });
     lightbox.addEventListener('click', function(e){ if (e.target === lightbox) lightbox.classList.remove('open'); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lightbox.classList.remove('open'); });

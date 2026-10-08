@@ -299,9 +299,7 @@
   .lightbox{position:fixed; inset:0; z-index:100; background:rgba(23,26,29,.82); display:none; align-items:center; justify-content:center; padding:24px;}
   .lightbox.open{display:flex;}
   .lightbox img{max-width:100%; max-height:90vh; border-radius:8px; background:#fff;}
-  .lightbox-close{position:fixed; top:20px; right:24px; background:none; border:none; color:#fff; font-size:2rem; line-height:1; cursor:pointer;}
-  .lightbox{overflow-y:auto; align-items:flex-start;}
-  .lightbox img{max-height:none; width:min(512px,100%); margin:0 auto;}
+  .lightbox-close{position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:2rem; line-height:1; cursor:pointer;}
 
   /* FOOTER (matches site footer) */
   footer.site{background:var(--ink); color:#c7ccd1; padding:48px 0 28px;}
@@ -547,7 +545,7 @@
 
 <div class="lightbox" id="drugFactsLightbox">
   <button class="lightbox-close" id="drugFactsLightboxClose" aria-label="Close">&times;</button>
-  <img src="../assets/cetirizine-drug-facts-label.png" alt="Full Drug Facts label for Famora Cetirizine HCl 10 mg, 365 tablets.">
+  <img src="../assets/cetirizine-drug-facts-bottle.jpg" alt="Famora Cetirizine HCl 10 mg, 365 tablets bottle showing the Drug Facts label on the side.">
 </div>
 
 <script>

@@ -31,6 +31,10 @@
   }
   .fm-product-card p{ font-family:'Open Sans',sans-serif; font-size:14.5px; color:#5a5a5a; line-height:1.6; margin:0 0 22px; flex-grow:1; }
   .fm-product-card .fm-btn{ text-align:center; }
+  .fm-product-card .fm-btn + .fm-btn{ margin-top:12px; }
+  .fm-product-card.fm-blue .fm-btn-secondary{ color:#fff; border-color:rgba(255,255,255,.75); }
+  .fm-product-card.fm-blue .fm-btn-secondary:hover{ background:rgba(255,255,255,.16); }
+  @media (min-width:901px){ .fm-product-card > .fm-btn:only-of-type{ margin-bottom:65px; } }
   @media (max-width:900px){ .fm-products-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
 </style>
 
@@ -53,6 +57,7 @@
         <h3>Allergy Relief 25mg Diphenhydramine HCl</h3>
         <p>OTC antihistamine tablets for sneezing, itchy/watery eyes, and runny nose.</p>
         <a class="fm-btn fm-btn-primary" href="https://www.amazon.com/dp/B0GWS1F7XH" target="_blank" rel="noopener">Shop Diphenhydramine on Amazon</a>
+        <a class="fm-btn fm-btn-secondary" href="products/diphenhydramine-hcl-25mg-650-count.html">View Product Details</a>
       </div>
 
       <div class="fm-product-card">

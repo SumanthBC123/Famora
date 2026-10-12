@@ -232,8 +232,14 @@
   .product-section a{color:var(--blue-deep); text-decoration:underline;}
   .content-image{border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px;}
   .content-image img{width:100%; height:auto; display:block;}
-  .content-video{border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px; background:#000;}
+  .content-video{position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px; background:#000;}
   .content-video video{display:block; width:100%; height:auto; aspect-ratio:16/9;}
+  .video-play-btn{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:76px; height:76px; border-radius:50%; border:none; background:var(--orange); color:#2b1a00; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; box-shadow:0 12px 28px -8px rgba(0,0,0,.45); transition:transform .18s ease, background .18s ease;}
+  .video-play-btn svg{width:34px; height:34px; fill:currentColor; margin-left:4px;}
+  .video-play-btn:hover{background:var(--orange-deep); transform:translate(-50%,-50%) scale(1.07);}
+  .video-play-btn:focus-visible{outline:3px solid #fff; outline-offset:3px;}
+  .video-play-btn.is-hidden{display:none;}
+  @media (max-width:640px){ .video-play-btn{width:60px; height:60px;} .video-play-btn svg{width:28px; height:28px;} }
   .content-image-caption{font-size:0.85rem; font-style:italic; color:var(--ink-soft); margin:0 0 8px; text-align:center;}
   section.alt-bg{background:var(--neutral);}
 
@@ -377,6 +383,9 @@
           <source src="../assets/diphenhydramine-allergy-relief-video.mp4" type="video/mp4">
           Your browser does not support embedded video. <a href="../assets/diphenhydramine-allergy-relief-video.mp4">Open the video</a>.
         </video>
+        <button type="button" class="video-play-btn" id="productVideoPlay" aria-label="Play video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -649,6 +658,13 @@
   });
 
   var productVideo = document.getElementById('productVideo');
+  var productVideoPlay = document.getElementById('productVideoPlay');
+  if (productVideo && productVideoPlay){
+    productVideoPlay.addEventListener('click', function(){ productVideo.play(); });
+    productVideo.addEventListener('play', function(){ productVideoPlay.classList.add('is-hidden'); });
+    productVideo.addEventListener('pause', function(){ productVideoPlay.classList.remove('is-hidden'); });
+    productVideo.addEventListener('ended', function(){ productVideoPlay.classList.remove('is-hidden'); });
+  }
   if (productVideo){
     var videoPlayed = false;
     productVideo.addEventListener('play', function(){

@@ -232,6 +232,8 @@
   .product-section a{color:var(--blue-deep); text-decoration:underline;}
   .content-image{border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px;}
   .content-image img{width:100%; height:auto; display:block;}
+  .content-video{border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:0 16px 30px -22px rgba(23,26,29,.3); margin:28px 0 12px; background:#000;}
+  .content-video video{display:block; width:100%; height:auto; aspect-ratio:16/9;}
   .content-image-caption{font-size:0.85rem; font-style:italic; color:var(--ink-soft); margin:0 0 8px; text-align:center;}
   section.alt-bg{background:var(--neutral);}
 
@@ -370,11 +372,11 @@
       <h2>More tablets in one practical bottle.</h2>
       <p>High-count OTC formats help households keep familiar essentials on hand without constantly replacing small bottles. The 650-tablet format makes it easy to review the quantity, read the label and decide whether the product fits your household&rsquo;s needs.</p>
       <p>Before buying an OTC allergy medicine, compare the active ingredient, strength, count, directions, warnings and current price. The Amazon listing is the best place to confirm the latest price and availability.</p>
-      <div class="content-image">
-        <picture>
-          <source srcset="../assets/hero-lifestyle.webp" type="image/webp">
-          <img src="../assets/hero-lifestyle.jpg" alt="Famora Allergy Relief in an organized home medicine cabinet." width="1200" height="800" loading="lazy">
-        </picture>
+      <div class="content-video">
+        <video id="productVideo" controls preload="none" playsinline poster="../assets/diphenhydramine-allergy-relief-video-poster.jpg" width="1280" height="720" aria-label="Video: Famora Allergy Relief Diphenhydramine HCl 25 mg, 650 tablets">
+          <source src="../assets/diphenhydramine-allergy-relief-video.mp4" type="video/mp4">
+          Your browser does not support embedded video. <a href="../assets/diphenhydramine-allergy-relief-video.mp4">Open the video</a>.
+        </video>
       </div>
     </div>
   </section>
@@ -645,6 +647,16 @@
       }
     });
   });
+
+  var productVideo = document.getElementById('productVideo');
+  if (productVideo){
+    var videoPlayed = false;
+    productVideo.addEventListener('play', function(){
+      if (videoPlayed) return;
+      videoPlayed = true;
+      fireGtag('product_video_play', { video_title: 'Famora Allergy Relief Diphenhydramine HCl 25 mg', page_location: window.location.href });
+    });
+  }
 
   var scroll75Fired = false;
   function checkScroll75(){

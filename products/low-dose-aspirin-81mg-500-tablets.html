@@ -403,6 +403,15 @@
     <div class="wrap">
       <h2>Low dose aspirin in a practical 500-tablet format.</h2>
       <p>Famora Low Dose Aspirin is available in a 500-tablet bottle for people using the product as directed. Before buying, review the active ingredient, strength, uses, directions, warnings and count, then check the current product details on Amazon.</p>
+      <div class="content-video">
+        <video id="productVideo" controls preload="metadata" playsinline poster="../assets/low-dose-aspirin-video-poster.jpg" width="1280" height="720" aria-label="Video: Famora Low Dose Aspirin 81 mg Enteric Coated Tablets, 500 tablets">
+          <source src="../assets/low-dose-aspirin-video.mp4" type="video/mp4">
+          Your browser does not support embedded video. <a href="../assets/low-dose-aspirin-video.mp4">Open the video</a>.
+        </video>
+        <button type="button" class="video-play-btn" id="productVideoPlay" aria-label="Play video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -668,6 +677,23 @@
       }
     });
   });
+
+  var productVideo = document.getElementById('productVideo');
+  var productVideoPlay = document.getElementById('productVideoPlay');
+  if (productVideo && productVideoPlay){
+    productVideoPlay.addEventListener('click', function(){ productVideo.play(); });
+    productVideo.addEventListener('play', function(){ productVideoPlay.classList.add('is-hidden'); });
+    productVideo.addEventListener('pause', function(){ productVideoPlay.classList.remove('is-hidden'); });
+    productVideo.addEventListener('ended', function(){ productVideoPlay.classList.remove('is-hidden'); });
+  }
+  if (productVideo){
+    var videoPlayed = false;
+    productVideo.addEventListener('play', function(){
+      if (videoPlayed) return;
+      videoPlayed = true;
+      fireGtag('product_video_play', { video_title: 'Famora Low Dose Aspirin 81 mg Enteric Coated Tablets', page_location: window.location.href });
+    });
+  }
 
   var scroll75Fired = false;
   function checkScroll75(){
